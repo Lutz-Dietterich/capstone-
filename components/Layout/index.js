@@ -6,9 +6,9 @@ export default function Layout({ children }) {
   return (
     <>
       <StyledHeader>
-        <h1>
+        <StyledLogo>
           <Image src="/logo.png" alt="Logo" width={200} height={50} />
-        </h1>
+        </StyledLogo>
       </StyledHeader>
       <StyledMain>{children}</StyledMain>
       <StyledFooter>
@@ -21,10 +21,26 @@ export default function Layout({ children }) {
 const StyledHeader = styled.header`
   position: fixed;
   display: flex;
-  padding: 1rem;
+  padding-left: 1rem;
+  background-color: #f5f5f5;
+  width: 100%;
+  z-index: 1;
+  margin: 0;
+`;
+
+const StyledLogo = styled.h1`
+  margin: 0;
+  padding: 20px 0 0 0;
 `;
 
 const StyledMain = styled.main`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  top: 60px;
   padding: 1rem;
 `;
 
@@ -33,7 +49,6 @@ const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
   background-color: #fff;
-  border-top: 1px solid #000;
   bottom: 0;
   left: 0;
   width: 100%;
