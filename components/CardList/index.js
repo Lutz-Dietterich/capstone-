@@ -26,7 +26,18 @@ const StyledCardList = styled.section`
   flex-direction: column;
   align-items: center;
   width: 100%;
+  max-width: 800px;
   height: 100%;
   gap: 20px;
   margin-top: 20px;
+
+  // @media (min-width: 768px) {
+  //   display: grid;
+  //   grid-template-columns: repeat(2, 1fr);
+  //   justify-items: center;
+  //   gap: 20px;
+  //   align-items: center;
+  //   margin: 20px auto;
+  //   overflow: hidden;
+  // }
 `;
