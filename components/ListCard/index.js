@@ -55,6 +55,7 @@ const StyledFavoriteButton = styled.button`
   background-color: #fff;
   border: none;
   cursor: pointer;
+  display: none;
 `;
 
 const StyledCardImage = styled(Image)`
