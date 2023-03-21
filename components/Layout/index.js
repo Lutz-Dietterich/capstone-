@@ -7,7 +7,7 @@ export default function Layout({ children }) {
     <>
       <StyledHeader>
         <StyledLogo>
-          <Image src="/logo.png" alt="Logo" width={120} height={50} />
+          <Image src="/pmlogo.png" alt="Logo" width={120} height={50} />
         </StyledLogo>
       </StyledHeader>
       <StyledMain>{children}</StyledMain>
