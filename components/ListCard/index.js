@@ -45,7 +45,7 @@ const StyledCardHeader = styled.header`
 
 const StyledCardHeadline = styled.h2`
   font-size: 1.2rem;
-  font-weight: 400;
+  font-weight: 600;
   color: #000;
 `;
 
