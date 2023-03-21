@@ -6,6 +6,12 @@ export default function CardList() {
     <>
       <StyledCard>
         <StyledCardHeader>Card 1</StyledCardHeader>
+        <StyledCardImage
+          src="/pmlogo.png"
+          alt="PawfectMatch"
+          width={200}
+          height={50}
+        />
       </StyledCard>
     </>
   );
@@ -15,8 +21,8 @@ const StyledCard = styled.article`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 200px;
-  height: 200px;
+  width: 90vw;
+  height: 50vh;
   background-color: #fff;
   border-radius: 30px;
   border: 1px solid #000;
@@ -32,7 +38,7 @@ const StyledCardHeader = styled.header`
   border-radius: 30px;
 `;
 
-const styledCardImage = styled(Image)`
+const StyledCardImage = styled(Image)`
   width: 100%;
   height: 100%;
 `;

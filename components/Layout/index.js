@@ -7,7 +7,7 @@ export default function Layout({ children }) {
     <>
       <StyledHeader>
         <StyledLogo>
-          <Image src="/logo.png" alt="PawfectMatch" width={200} height={50} />
+          <Image src="/pmlogo.png" alt="PawfectMatch" width={200} height={50} />
         </StyledLogo>
       </StyledHeader>
       <StyledMain>{children}</StyledMain>
