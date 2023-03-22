@@ -1,14 +1,15 @@
-import useSWR from "swr";
 import ListCard from "../ListCard";
 import styled from "styled-components";
+import { BreedData } from "../../pages/_app";
+import { useContext } from "react";
 
 export default function CardList() {
-  const { data, error } = useSWR("/api/db");
+  const breedData = useContext(BreedData);
 
   return (
     <StyledCardList>
-      {data ? (
-        data.map((dog) => (
+      {breedData ? (
+        breedData.map((dog) => (
           <div key={dog.id}>
             <ListCard name={dog.name} img={dog.image_link} id={dog._id} />
           </div>
