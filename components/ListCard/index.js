@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function ListCard({ name, img, breedID }) {
   return (
-    <Link href={`/details/${breedID}`}>
+    <StyledLink href={`/details/${breedID}`}>
       <StyledCard>
         <StyledCardHeader>
           <StyledCardHeadline>{name}</StyledCardHeadline>
@@ -17,9 +17,13 @@ export default function ListCard({ name, img, breedID }) {
           height={500}
         />
       </StyledCard>
-    </Link>
+    </StyledLink>
   );
 }
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 const StyledCard = styled.article`
   display: flex;
@@ -49,7 +53,7 @@ const StyledCardHeader = styled.header`
 const StyledCardHeadline = styled.h2`
   font-size: 1.2rem;
   font-weight: 600;
-  color: #000;
+  color: darkslategray;
 `;
 
 const StyledFavoriteButton = styled.button`

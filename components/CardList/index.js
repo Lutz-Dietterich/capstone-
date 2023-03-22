@@ -10,7 +10,7 @@ export default function CardList() {
     <StyledCardList>
       {breedData ? (
         breedData.map((dog) => (
-          <div key={dog.id}>
+          <div key={dog._id}>
             <ListCard name={dog.name} img={dog.image_link} breedID={dog._id} />
           </div>
         ))
