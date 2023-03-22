@@ -1,20 +1,23 @@
 import styled from "styled-components";
 import Image from "next/image";
+import Link from "next/link";
 
-export default function ListCard({ name, img }) {
+export default function ListCard({ name, img, id }) {
   return (
-    <StyledCard>
-      <StyledCardHeader>
-        <StyledCardHeadline>{name}</StyledCardHeadline>
-        <StyledFavoriteButton> ❤️ </StyledFavoriteButton>
-      </StyledCardHeader>
-      <StyledCardImage
-        src={img}
-        alt={`Bild ${name}`}
-        width={512}
-        height={500}
-      />
-    </StyledCard>
+    <Link href={`/details/${id}`}>
+      <StyledCard>
+        <StyledCardHeader>
+          <StyledCardHeadline>{name}</StyledCardHeadline>
+          <StyledFavoriteButton> ❤️ </StyledFavoriteButton>
+        </StyledCardHeader>
+        <StyledCardImage
+          src={img}
+          alt={`Bild ${name}`}
+          width={512}
+          height={500}
+        />
+      </StyledCard>
+    </Link>
   );
 }
 

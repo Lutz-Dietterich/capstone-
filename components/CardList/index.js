@@ -10,7 +10,7 @@ export default function CardList() {
       {data ? (
         data.map((dog) => (
           <div key={dog.id}>
-            <ListCard name={dog.name} img={dog.image_link} />
+            <ListCard name={dog.name} img={dog.image_link} id={dog._id} />
           </div>
         ))
       ) : (
