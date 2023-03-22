@@ -15,7 +15,8 @@ export default function App({ Component, pageProps }) {
     <>
       <GlobalStyle />
       <Head>
-        <title>Capstone Project</title>
+        <link rel="icon" href="/favicon.ico" />
+        <title>PawfectMatch</title>
       </Head>
       <BreedData.Provider value={breedData}>
         <Layout>

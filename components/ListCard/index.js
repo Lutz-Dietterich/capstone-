@@ -2,9 +2,9 @@ import styled from "styled-components";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function ListCard({ name, img, id }) {
+export default function ListCard({ name, img, breedID }) {
   return (
-    <Link href={`/details/${id}`}>
+    <Link href={`/details/${breedID}`}>
       <StyledCard>
         <StyledCardHeader>
           <StyledCardHeadline>{name}</StyledCardHeadline>
