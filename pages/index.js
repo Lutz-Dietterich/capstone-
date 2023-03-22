@@ -1,3 +1,9 @@
+import CardList from "../components/CardList";
+
 export default function Home() {
-  return <div></div>;
+  return (
+    <>
+      <CardList />
+    </>
+  );
 }

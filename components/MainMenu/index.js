@@ -45,6 +45,7 @@ const StyledList = styled.ul`
   list-style-type: none;
   padding: 0;
   width: 100%;
+  margin: 8px 0;
 `;
 
 const StyledListItem = styled.li`
@@ -57,7 +58,7 @@ const StyledListItem = styled.li`
 const StyledLink = styled(Link)`
   color: #989898;
   text-decoration: none;
-  font-size: 2rem;
+  font-size: 1.8rem;
   font-weight: 600;
 
   &.active {

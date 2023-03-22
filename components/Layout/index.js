@@ -7,7 +7,7 @@ export default function Layout({ children }) {
     <>
       <StyledHeader>
         <StyledLogo>
-          <Image src="/pmlogo.png" alt="Logo" width={120} height={50} />
+          <Image src="/pmlogo.png" alt="PawfectMatch" width={200} height={50} />
         </StyledLogo>
       </StyledHeader>
       <StyledMain>{children}</StyledMain>
@@ -21,7 +21,6 @@ export default function Layout({ children }) {
 const StyledHeader = styled.header`
   position: fixed;
   display: flex;
-  padding-left: 1rem;
   background-color: #f5f5f5;
   width: 100%;
   z-index: 1;
