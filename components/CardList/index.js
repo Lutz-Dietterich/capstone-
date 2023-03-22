@@ -4,7 +4,6 @@ import styled from "styled-components";
 
 export default function CardList() {
   const { data, error } = useSWR("/api/db");
-  console.log(data);
 
   return (
     <StyledCardList>
