@@ -31,13 +31,13 @@ const StyledCardList = styled.section`
   gap: 20px;
   margin-top: 20px;
 
-  // @media (min-width: 768px) {
-  //   display: grid;
-  //   grid-template-columns: repeat(2, 1fr);
-  //   justify-items: center;
-  //   gap: 20px;
-  //   align-items: center;
-  //   margin: 20px auto;
-  //   overflow: hidden;
-  // }
+  @media (min-width: 768px) {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 20px;
+    align-items: center;
+    margin: 20px auto;
+    overflow: hidden;
+  }
 `;
