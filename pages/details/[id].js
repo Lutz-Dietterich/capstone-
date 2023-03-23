@@ -142,6 +142,7 @@ const StyledImage = styled(Image)`
   margin-top: 30px;
   box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.3);
   border-radius: 30px 30px 0 0;
+  border: 1px solid #3742fa;
 `;
 
 const StyledTextFields = styled.section`
@@ -152,7 +153,7 @@ const StyledTextFields = styled.section`
   max-width: 512px;
 
   border: 1px solid #3742fa;
-  border-radius: 30px 30px 0 0;
+  border-radius: 30px;
   margin-top: -23px;
   padding-bottom: 50px;
   background-color: #fff;
