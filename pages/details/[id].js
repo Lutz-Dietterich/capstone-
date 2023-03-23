@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { TiArrowBackOutline } from "react-icons/ti";
 import StarRating from "../../components/StarRating";
+import Characteristics from "../../components/Characteristics";
 
 export default function DetailsPage() {
   const breedData = useContext(BreedData);
@@ -36,7 +37,10 @@ export default function DetailsPage() {
       />
       <StyledTextFields>
         <StyledHeadline>{selectedBreed.name}</StyledHeadline>
+        <Characteristics title={"Life Expectancy"} />
+
         <StyledLine />
+
         <StarRating title={"Energy"} score={selectedBreed.energy} />
         <StarRating
           title={"Good with Children"}
