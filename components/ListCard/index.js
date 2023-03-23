@@ -31,7 +31,8 @@ const StyledCard = styled.article`
   align-items: center;
   width: 90vw;
   max-width: 400px;
-  height: 40vh;
+  max-height: 400px;
+  height: 90vw;
   background-color: #fff;
   border-radius: 30px;
   border: 1px solid #3742fa;
@@ -67,6 +68,6 @@ const StyledFavoriteButton = styled.button`
 
 const StyledCardImage = styled(Image)`
   width: 100%;
-  height: 100%;
+  height: 90vw;
   border-radius: 30px;
 `;

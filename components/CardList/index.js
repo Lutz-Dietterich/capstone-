@@ -27,7 +27,6 @@ const StyledCardList = styled.section`
   align-items: center;
   width: 100%;
   max-width: 800px;
-  height: 100%;
   gap: 20px;
   margin-top: 20px;
 
