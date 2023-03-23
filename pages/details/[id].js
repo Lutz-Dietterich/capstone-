@@ -22,8 +22,7 @@ export default function DetailsPage() {
   if (!selectedBreed) {
     return <div>Loading...</div>;
   }
-  selectedBreed.energy;
-  selectedBreed.min_life_expectancy;
+
   return (
     <StyledDetailsPage>
       <StyledBackLink href="/">
