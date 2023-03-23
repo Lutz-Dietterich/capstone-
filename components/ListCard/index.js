@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import Image from "next/image";
+import FavouriteButton from "../FavouriteButton";
 
 export default function ListCard({ name, img }) {
   return (
     <StyledCard>
       <StyledCardHeader>
         <StyledCardHeadline>{name}</StyledCardHeadline>
-        <StyledFavoriteButton> ❤️ </StyledFavoriteButton>
+        <FavouriteButton />
       </StyledCardHeader>
       <StyledCardImage
         src={img}
@@ -25,6 +26,7 @@ const StyledCard = styled.article`
   width: 90vw;
   max-width: 400px;
   height: 40vh;
+  max-height: 400px;
   background-color: #fff;
   border-radius: 30px;
   border: 1px solid #3742fa;
@@ -49,17 +51,9 @@ const StyledCardHeadline = styled.h2`
   color: #000;
 `;
 
-const StyledFavoriteButton = styled.button`
-  width: 50px;
-  height: 50px;
-  background-color: #fff;
-  border: none;
-  cursor: pointer;
-  display: none;
-`;
-
 const StyledCardImage = styled(Image)`
   width: 100%;
   height: 100%;
+  max-height: 500px;
   border-radius: 30px;
 `;

@@ -40,3 +40,27 @@ const StyledCardList = styled.section`
   //   overflow: hidden;
   // }
 `;
+
+// mögliche Lösung
+function ListCardWrapper(props) {
+  const [favorites, setFavorites] = useState({});
+
+  const handleSetFavorite = (breedID, value) => {
+    setFavorites({ ...favorites, [breedID]: value });
+  };
+
+  return (
+    <div>
+      {props.breeds.map((breed) => (
+        <ListCard
+          key={breed.id}
+          name={breed.name}
+          img={breed.image}
+          breedID={breed.id}
+          favorite={favorites[breed.id]}
+          setFavorite={(value) => handleSetFavorite(breed.id, value)}
+        />
+      ))}
+    </div>
+  );
+}
