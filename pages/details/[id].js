@@ -84,28 +84,39 @@ export default function DetailsPage() {
         <StyledLine />
 
         <StarRating title={"Energy"} score={selectedBreed.energy} />
+
         <StarRating
           title={"Good with Children"}
           score={selectedBreed.good_with_children}
         />
+
         <StarRating
           title={"Good with Other Dogs"}
           score={selectedBreed.good_with_other_dogs}
         />
+
         <StarRating title={"Shedding"} score={selectedBreed.shedding} />
+
         <StarRating title={"Grooming"} score={selectedBreed.grooming} />
+
         <StarRating title={"Drooling"} score={selectedBreed.drooling} />
+
         <StarRating title={"Coat Length"} score={selectedBreed.coat_length} />
+
         <StarRating
           title={"Good with Strangers"}
           score={selectedBreed.good_with_strangers}
         />
+
         <StarRating title={"Playfulness"} score={selectedBreed.playfulness} />
+
         <StarRating
           title={"Protectiveness"}
           score={selectedBreed.protectiveness}
         />
+
         <StarRating title={"Trainability"} score={selectedBreed.trainability} />
+
         <StarRating title={"Barking"} score={selectedBreed.barking} />
       </StyledTextFields>
     </StyledDetailsPage>
