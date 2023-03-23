@@ -35,4 +35,5 @@ const StyledStarRating = styled.div`
 const StyledStar = styled.span`
   margin-right: 5px;
   font-size: 1.5rem;
+  // color: #3742fa;
 `;

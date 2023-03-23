@@ -23,6 +23,7 @@ export default function DetailsPage() {
     return <div>Loading...</div>;
   }
   console.log(selectedBreed.energy);
+  console.log(selectedBreed.min_life_expectancy);
   return (
     <StyledDetailsPage>
       <StyledBackLink href="/">
@@ -37,7 +38,48 @@ export default function DetailsPage() {
       />
       <StyledTextFields>
         <StyledHeadline>{selectedBreed.name}</StyledHeadline>
-        <Characteristics title={"Life Expectancy"} />
+
+        <Characteristics
+          title={"Height (Female)"}
+          min={(selectedBreed.min_height_female * 2.54).toFixed(1)}
+          max={(selectedBreed.max_height_female * 2.54).toFixed(1)}
+          unit={"centimeters"}
+        />
+
+        <Characteristics
+          title={"Height (Male)"}
+          min={(selectedBreed.min_height_male * 2.54).toFixed(1)}
+          max={(selectedBreed.max_height_male * 2.54).toFixed(1)}
+          unit={"centimeters"}
+        />
+
+        <Characteristics
+          title={"Weight (Female)"}
+          min={(selectedBreed.min_weight_female * 0.453592).toFixed(1)}
+          max={(selectedBreed.max_weight_female * 0.453592).toFixed(1)}
+          unit={"kilograms"}
+        />
+
+        <Characteristics
+          title={"Weight (Male)"}
+          min={(selectedBreed.min_weight_male * 0.453592).toFixed(1)}
+          max={(selectedBreed.max_weight_male * 0.453592).toFixed(1)}
+          unit={"kilograms"}
+        />
+
+        <Characteristics
+          title={"min. Monthly Cost ~"}
+          min={((selectedBreed.min_weight_female * 0.7 + 10) * 2).toFixed(2)}
+          max={((selectedBreed.max_weight_male * 0.6 + 10) * 2).toFixed(2)}
+          unit={"euros"}
+        />
+
+        <Characteristics
+          title={"Life Expectancy"}
+          min={selectedBreed.min_life_expectancy}
+          max={selectedBreed.max_life_expectancy}
+          unit={"years"}
+        />
 
         <StyledLine />
 
@@ -94,10 +136,12 @@ const StyledDetailsPage = styled.article`
 
 const StyledImage = styled(Image)`
   width: 100%;
+  height: 90vw;
   max-width: 512px;
-  height: 40vh;
   max-height: 500px;
   margin-top: 30px;
+  box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.3);
+  border-radius: 30px 30px 0 0;
 `;
 
 const StyledTextFields = styled.section`
