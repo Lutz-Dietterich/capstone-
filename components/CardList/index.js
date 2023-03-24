@@ -29,6 +29,7 @@ const StyledCardList = styled.section`
   max-width: 800px;
   gap: 20px;
   margin-top: 20px;
+  margin-bottom: 60px;
 
   // @media (min-width: 768px) {
   //   display: grid;

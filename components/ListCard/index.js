@@ -10,18 +10,21 @@ export default function ListCard({ name, img, breedID }) {
         <StyledCardHeadline>{name}</StyledCardHeadline>
         <FavouriteButton />
       </StyledCardHeader>
-      <StyledCardImage
-        src={img}
-        alt={`Bild ${name}`}
-        width={512}
-        height={500}
-      />
+      <StyledLink href={`/details/${breedID}`}>
+        <StyledCardImage
+          src={img}
+          alt={`Bild ${name}`}
+          width={512}
+          height={500}
+        />
+      </StyledLink>
     </StyledCard>
   );
 }
-
 const StyledLink = styled(Link)`
   text-decoration: none;
+  width: 100%;
+  height: 90vw;
 `;
 
 const StyledCard = styled.article`
@@ -58,6 +61,6 @@ const StyledCardHeadline = styled.h2`
 
 const StyledCardImage = styled(Image)`
   width: 100%;
-  height: 90vw;
+  height: 100%;
   border-radius: 30px;
 `;
