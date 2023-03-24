@@ -1,9 +1,14 @@
 import styled from "styled-components";
 import Image from "next/image";
+<<<<<<< HEAD
 import FavouriteButton from "../FavouriteButton";
+=======
+import Link from "next/link";
+>>>>>>> main
 
-export default function ListCard({ name, img }) {
+export default function ListCard({ name, img, breedID }) {
   return (
+<<<<<<< HEAD
     <StyledCard>
       <StyledCardHeader>
         <StyledCardHeadline>{name}</StyledCardHeadline>
@@ -16,8 +21,28 @@ export default function ListCard({ name, img }) {
         height={500}
       />
     </StyledCard>
+=======
+    <StyledLink href={`/details/${breedID}`}>
+      <StyledCard>
+        <StyledCardHeader>
+          <StyledCardHeadline>{name}</StyledCardHeadline>
+          <StyledFavoriteButton> ❤️ </StyledFavoriteButton>
+        </StyledCardHeader>
+        <StyledCardImage
+          src={img}
+          alt={`Bild ${name}`}
+          width={512}
+          height={500}
+        />
+      </StyledCard>
+    </StyledLink>
+>>>>>>> main
   );
 }
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 
 const StyledCard = styled.article`
   display: flex;
@@ -25,8 +50,13 @@ const StyledCard = styled.article`
   align-items: center;
   width: 90vw;
   max-width: 400px;
+<<<<<<< HEAD
   height: 40vh;
   max-height: 400px;
+=======
+  max-height: 400px;
+  height: 90vw;
+>>>>>>> main
   background-color: #fff;
   border-radius: 30px;
   border: 1px solid #3742fa;
@@ -48,12 +78,16 @@ const StyledCardHeader = styled.header`
 const StyledCardHeadline = styled.h2`
   font-size: 1.2rem;
   font-weight: 600;
-  color: #000;
+  color: darkslategray;
 `;
 
 const StyledCardImage = styled(Image)`
   width: 100%;
+<<<<<<< HEAD
   height: 100%;
   max-height: 500px;
+=======
+  height: 90vw;
+>>>>>>> main
   border-radius: 30px;
 `;

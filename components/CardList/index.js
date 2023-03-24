@@ -1,16 +1,17 @@
-import useSWR from "swr";
 import ListCard from "../ListCard";
 import styled from "styled-components";
+import { BreedData } from "../../pages/_app";
+import { useContext } from "react";
 
 export default function CardList() {
-  const { data, error } = useSWR("/api/db");
+  const breedData = useContext(BreedData);
 
   return (
     <StyledCardList>
-      {data ? (
-        data.map((dog) => (
-          <div key={dog.id}>
-            <ListCard name={dog.name} img={dog.image_link} />
+      {breedData ? (
+        breedData.map((dog) => (
+          <div key={dog._id}>
+            <ListCard name={dog.name} img={dog.image_link} breedID={dog._id} />
           </div>
         ))
       ) : (
@@ -26,7 +27,6 @@ const StyledCardList = styled.section`
   align-items: center;
   width: 100%;
   max-width: 800px;
-  height: 100%;
   gap: 20px;
   margin-top: 20px;
 
