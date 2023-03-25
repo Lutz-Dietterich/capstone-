@@ -25,7 +25,7 @@ export default function DetailsPage() {
 
   return (
     <StyledDetailsPage>
-      <StyledBackLink href="/">
+      <StyledBackLink href={`/#${selectedBreed._id}`}>
         <TiArrowBackOutline />
         Back
       </StyledBackLink>

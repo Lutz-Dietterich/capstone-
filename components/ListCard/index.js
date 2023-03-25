@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function ListCard({ name, img, breedID }) {
   return (
-    <StyledCard>
+    <StyledCard id={breedID}>
       <StyledCardHeader>
         <StyledCardHeadline>{name}</StyledCardHeadline>
         <FavouriteButton />
