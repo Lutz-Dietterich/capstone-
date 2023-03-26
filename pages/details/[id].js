@@ -152,7 +152,7 @@ const StyledImage = styled(Image)`
   margin-top: 30px;
   box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.3);
   border-radius: 30px 30px 0 0;
-  border: 1px solid #3742fa;
+  // border: 1px solid #3742fa;
 `;
 
 const StyledTextFields = styled.section`
@@ -179,5 +179,5 @@ const StyledHeadline = styled.h2`
 const StyledLine = styled.hr`
   width: 80%;
   max-width: 512px;
-  border: 0.2px solid darkslategray;
+  border-top: 0.1px solid rgba(55, 66, 250, 0.3);
 `;

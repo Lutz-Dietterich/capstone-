@@ -37,8 +37,11 @@ const StyledCard = styled.article`
   height: 90vw;
   background-color: #fff;
   border-radius: 30px;
-  border: 1px solid #3742fa;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+  &:hover {
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+    border: 1px solid #3742fa;
+  }
 `;
 
 const StyledCardHeader = styled.header`
