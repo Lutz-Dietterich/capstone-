@@ -9,6 +9,7 @@ import StarRating from "../../components/StarRating";
 import Characteristics from "../../components/Characteristics";
 import { Dna } from "react-loader-spinner";
 import FavoriteButton from "../../components/FavoriteButton";
+import { useNavigate } from "react-router-dom";
 
 export default function DetailsPage() {
   const breedData = useContext(BreedData);
@@ -39,7 +40,10 @@ export default function DetailsPage() {
   return (
     <StyledDetailsPage>
       <StyledDetailsHeader>
-        <StyledBackLink href={`/#${selectedBreed._id}`}>
+        <StyledBackLink
+          href={`/#${selectedBreed._id}`}
+          onClick={() => router.back()}
+        >
           <TiArrowBackOutline />
           Back
         </StyledBackLink>
