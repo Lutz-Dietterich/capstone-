@@ -13,18 +13,18 @@ export default function App({ Component, pageProps }) {
   const { data: breedData, error } = useSWR("/api/db", fetcher);
   const [favorites, setFavorites] = useState([]);
 
-  // useEffect(() => {
-  //   if (breedData) {
-  //     setFavorites(breedData);
-  //   }
-  // }, [breedData]);
-
   useEffect(() => {
-    const savedFavorites = localStorage.getItem("favorites");
-    if (savedFavorites) {
-      setFavorites(JSON.parse(savedFavorites));
+    if (breedData) {
+      setFavorites(breedData);
     }
-  }, []);
+  }, [breedData]);
+
+  // useEffect(() => {
+  //   const savedFavorites = localStorage.getItem("favorites");
+  //   if (savedFavorites) {
+  //     setFavorites(JSON.parse(savedFavorites));
+  //   }
+  // }, []);
 
   useEffect(() => {
     console.log(favorites);
@@ -38,7 +38,7 @@ export default function App({ Component, pageProps }) {
     });
 
     setFavorites(newFavorites);
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    // localStorage.setItem("favorites", JSON.stringify(newFavorites));
   }
 
   return (
