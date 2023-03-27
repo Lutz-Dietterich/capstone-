@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BreedData } from "../../pages/_app";
 import { useContext } from "react";
 import { Dna } from "react-loader-spinner";
+
 export default function CardList() {
   const breedData = useContext(BreedData);
 
