@@ -3,13 +3,11 @@ import { useContext } from "react";
 import { BreedData } from "../../pages/_app";
 import styled from "styled-components";
 import Image from "next/image";
-import Link from "next/link";
 import { TiArrowBackOutline } from "react-icons/ti";
 import StarRating from "../../components/StarRating";
 import Characteristics from "../../components/Characteristics";
 import { Dna } from "react-loader-spinner";
 import FavoriteButton from "../../components/FavoriteButton";
-import { useNavigate } from "react-router-dom";
 
 export default function DetailsPage() {
   const breedData = useContext(BreedData);
@@ -40,13 +38,10 @@ export default function DetailsPage() {
   return (
     <StyledDetailsPage>
       <StyledDetailsHeader>
-        <StyledBackLink
-          href={`/#${selectedBreed._id}`}
-          onClick={() => router.back()}
-        >
+        <StyledBackButton type="button" onClick={() => router.back()}>
           <TiArrowBackOutline />
           Back
-        </StyledBackLink>
+        </StyledBackButton>
         <FavoriteButton breedID={selectedBreed._id} />
       </StyledDetailsHeader>
       <StyledImage
@@ -142,7 +137,7 @@ export default function DetailsPage() {
   );
 }
 
-const StyledBackLink = styled(Link)`
+const StyledBackButton = styled.button`
   text-decoration: none;
   background-color: #f5f5f5;
   max-width: 550px;
@@ -150,6 +145,7 @@ const StyledBackLink = styled(Link)`
   font-size: 1rem;
   font-weight: 500;
   color: darkslategray;
+  border: none;
 `;
 
 const StyledDetailsHeader = styled.header`
