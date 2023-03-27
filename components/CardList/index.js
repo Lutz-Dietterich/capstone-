@@ -2,7 +2,7 @@ import ListCard from "../ListCard";
 import styled from "styled-components";
 import { BreedData } from "../../pages/_app";
 import { useContext } from "react";
-
+import { Dna } from "react-loader-spinner";
 export default function CardList() {
   const breedData = useContext(BreedData);
 
@@ -15,7 +15,16 @@ export default function CardList() {
           </div>
         ))
       ) : (
-        <div>Loading...</div>
+        <div>
+          <Dna
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="dna-loading"
+            wrapperStyle={{}}
+            wrapperClass="dna-wrapper"
+          />
+        </div>
       )}
     </StyledCardList>
   );
@@ -30,17 +39,17 @@ const StyledCardList = styled.section`
   gap: 20px;
   margin-top: 20px;
   margin-bottom: 60px;
-
-  // @media (min-width: 768px) {
-  //   display: grid;
-  //   grid-template-columns: repeat(2, 1fr);
-  //   justify-items: center;
-  //   gap: 20px;
-  //   align-items: center;
-  //   margin: 20px auto;
-  //   overflow: hidden;
-  // }
 `;
+
+// @media (min-width: 768px) {
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   justify-items: center;
+//   gap: 20px;
+//   align-items: center;
+//   margin: 20px auto;
+//   overflow: hidden;
+// }
 
 // mögliche Lösung
 function ListCardWrapper(props) {
