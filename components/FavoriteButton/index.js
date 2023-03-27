@@ -4,6 +4,7 @@ import { useContext } from "react";
 
 export default function FavoriteButton({ breedID }) {
   const { favorites, handleFavorite } = useContext(Favorite);
+
   return (
     <StyledFavoriteButton onClick={() => handleFavorite(breedID)}>
       {favorites.find((item) => item._id === breedID)?.favorite ? "❤️" : "🤍"}

@@ -13,22 +13,14 @@ export default function App({ Component, pageProps }) {
   const { data: breedData, error } = useSWR("/api/db", fetcher);
   const [favorites, setFavorites] = useState([]);
 
-  // useEffect(() => {
-  //   if (breedData) {
-  //     setFavorites(breedData);
-  //   }
-  // }, [breedData]);
-
   useEffect(() => {
     const savedFavorites = localStorage.getItem("favorites");
     if (savedFavorites) {
       setFavorites(JSON.parse(savedFavorites));
+    } else if (breedData) {
+      setFavorites(breedData);
     }
-  }, []);
-
-  useEffect(() => {
-    console.log(favorites);
-  }, [favorites]);
+  }, [breedData]);
 
   function handleFavorite(breedID) {
     const newFavorites = favorites.map((item) => {
@@ -37,8 +29,8 @@ export default function App({ Component, pageProps }) {
         : item;
     });
 
-    setFavorites(newFavorites);
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    setFavorites(newFavorites);
   }
 
   return (
