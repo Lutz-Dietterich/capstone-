@@ -1,4 +1,4 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 import GlobalStyle from "../styles";
 import Head from "next/head";
 import Layout from "../components/Layout";
@@ -11,11 +11,27 @@ export const Favorite = createContext();
 
 export default function App({ Component, pageProps }) {
   const { data: breedData, error } = useSWR("/api/db", fetcher);
-  const [favorite, setFavorite] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
-  const handleFavorite = () => {
-    setFavorite(!favorite);
-  };
+  useEffect(() => {
+    if (breedData) {
+      setFavorites(breedData);
+    }
+  }, [breedData]);
+
+  useEffect(() => {
+    console.log(favorites);
+  }, [favorites]);
+
+  function handleFavorite(breedID) {
+    const newFavorites = favorites.map((item) => {
+      return item._id === breedID
+        ? { ...item, favorite: !item.favorite }
+        : item;
+    });
+
+    setFavorites(newFavorites);
+  }
 
   return (
     <>
@@ -24,7 +40,7 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
         <title>PawfectMatch</title>
       </Head>
-      <Favorite.Provider value={{ favorite, handleFavorite }}>
+      <Favorite.Provider value={{ favorites, handleFavorite }}>
         <BreedData.Provider value={breedData}>
           <Layout>
             <Component {...pageProps} />

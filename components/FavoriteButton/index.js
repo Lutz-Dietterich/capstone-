@@ -3,13 +3,11 @@ import { Favorite } from "../../pages/_app";
 import { useContext } from "react";
 
 export default function FavoriteButton({ breedID }) {
-  const { favorite, handleFavorite } = useContext(Favorite);
+  const { favorites, handleFavorite } = useContext(Favorite);
   return (
-    <>
-      <StyledFavoriteButton onClick={() => handleFavorite(breedID)}>
-        {favorite ? "❤️" : "🤍"}
-      </StyledFavoriteButton>
-    </>
+    <StyledFavoriteButton onClick={() => handleFavorite(breedID)}>
+      {favorites.find((item) => item._id === breedID)?.favorite ? "❤️" : "🤍"}
+    </StyledFavoriteButton>
   );
 }
 
