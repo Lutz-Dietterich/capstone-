@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Image from "next/image";
-import FavouriteButton from "../FavouriteButton";
+import FavoriteButton from "../FavoriteButton";
 import Link from "next/link";
 
 export default function ListCard({ name, img, breedID }) {
@@ -8,7 +8,7 @@ export default function ListCard({ name, img, breedID }) {
     <StyledCard id={breedID}>
       <StyledCardHeader>
         <StyledCardHeadline>{name}</StyledCardHeadline>
-        <FavouriteButton breedID={breedID} />
+        <FavoriteButton breedID={breedID} />
       </StyledCardHeader>
       <StyledLink href={`/details/${breedID}`}>
         <StyledCardImage

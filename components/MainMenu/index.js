@@ -19,8 +19,8 @@ export default function MainMenu() {
         </StyledListItem>
         <StyledListItem>
           <StyledLink
-            href={"/favourites"}
-            className={router.pathname === "/favourites" ? "active" : ""}
+            href={"/favorites"}
+            className={router.pathname === "/favorites" ? "active" : ""}
           >
             <AiOutlineHeart />
           </StyledLink>

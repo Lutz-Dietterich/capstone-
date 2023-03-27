@@ -6,14 +6,14 @@ export default function FavoriteButton({ breedID }) {
   const { favorite, handleFavorite } = useContext(Favorite);
   return (
     <>
-      <StyledFavouriteButton onClick={() => handleFavorite(breedID)}>
+      <StyledFavoriteButton onClick={() => handleFavorite(breedID)}>
         {favorite ? "❤️" : "🤍"}
-      </StyledFavouriteButton>
+      </StyledFavoriteButton>
     </>
   );
 }
 
-const StyledFavouriteButton = styled.button`
+const StyledFavoriteButton = styled.button`
   width: 30px;
   height: 30px;
   background-color: transparent;
