@@ -8,7 +8,7 @@ export default function ListCard({ name, img, breedID }) {
     <StyledCard id={breedID}>
       <StyledCardHeader>
         <StyledCardHeadline>{name}</StyledCardHeadline>
-        <FavouriteButton />
+        <FavouriteButton breedID={breedID} />
       </StyledCardHeader>
       <StyledLink href={`/details/${breedID}`}>
         <StyledCardImage
