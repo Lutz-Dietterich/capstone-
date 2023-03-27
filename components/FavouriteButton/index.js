@@ -1,13 +1,13 @@
 import styled from "styled-components";
-import { Favourite } from "../../pages/_app";
+import { Favorite } from "../../pages/_app";
 import { useContext } from "react";
 
 export default function FavouriteButton() {
-  const { favourite, handleFavorite } = useContext(Favourite);
+  const { favorite, handleFavorite } = useContext(Favorite);
   return (
     <>
       <StyledFavouriteButton onClick={handleFavorite}>
-        {favourite ? "❤️" : "🤍"}
+        {favorite ? "❤️" : "🤍"}
       </StyledFavouriteButton>
     </>
   );
