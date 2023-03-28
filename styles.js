@@ -11,5 +11,6 @@ export default createGlobalStyle`
     font-family: system-ui;
     background-color: #f5f5f5;
     color: darkslategray;
+    letter-spacing: 0.5px;
   }
 `;

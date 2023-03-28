@@ -2,6 +2,7 @@ import ListCard from "../ListCard";
 import styled from "styled-components";
 import { BreedData } from "../../pages/_app";
 import { useContext } from "react";
+import LoadingSpinner from "../LoadingSpinner";
 
 export default function CardList() {
   const breedData = useContext(BreedData);
@@ -15,7 +16,7 @@ export default function CardList() {
           </div>
         ))
       ) : (
-        <div>Loading...</div>
+        <LoadingSpinner />
       )}
     </StyledCardList>
   );
@@ -29,14 +30,5 @@ const StyledCardList = styled.section`
   max-width: 800px;
   gap: 20px;
   margin-top: 20px;
-
-  // @media (min-width: 768px) {
-  //   display: grid;
-  //   grid-template-columns: repeat(2, 1fr);
-  //   justify-items: center;
-  //   gap: 20px;
-  //   align-items: center;
-  //   margin: 20px auto;
-  //   overflow: hidden;
-  // }
+  margin-bottom: 60px;
 `;

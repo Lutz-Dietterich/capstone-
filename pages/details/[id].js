@@ -3,10 +3,11 @@ import { useContext } from "react";
 import { BreedData } from "../../pages/_app";
 import styled from "styled-components";
 import Image from "next/image";
-import Link from "next/link";
 import { TiArrowBackOutline } from "react-icons/ti";
 import StarRating from "../../components/StarRating";
 import Characteristics from "../../components/Characteristics";
+import FavoriteButton from "../../components/FavoriteButton";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function DetailsPage() {
   const breedData = useContext(BreedData);
@@ -20,15 +21,18 @@ export default function DetailsPage() {
   }
 
   if (!selectedBreed) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   return (
     <StyledDetailsPage>
-      <StyledBackLink href="/">
-        <TiArrowBackOutline />
-        Back
-      </StyledBackLink>
+      <StyledDetailsHeader>
+        <StyledBackButton type="button" onClick={() => router.back()}>
+          <TiArrowBackOutline />
+          Back
+        </StyledBackButton>
+        <FavoriteButton breedID={selectedBreed._id} />
+      </StyledDetailsHeader>
       <StyledImage
         src={selectedBreed.image_link}
         width={500}
@@ -122,17 +126,27 @@ export default function DetailsPage() {
   );
 }
 
-const StyledBackLink = styled(Link)`
-  position: fixed;
+const StyledBackButton = styled.button`
   text-decoration: none;
   background-color: #f5f5f5;
-  width: 100%;
   max-width: 550px;
-  padding-bottom: 5px;
   padding-left: 20px;
   font-size: 1rem;
   font-weight: 500;
   color: darkslategray;
+  border: none;
+`;
+
+const StyledDetailsHeader = styled.header`
+  background-color: #f5f5f5;
+  position: fixed;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 550px;
+  padding-right: 10px;
 `;
 
 const StyledDetailsPage = styled.article`
@@ -149,10 +163,10 @@ const StyledImage = styled(Image)`
   height: 90vw;
   max-width: 512px;
   max-height: 500px;
-  margin-top: 30px;
+  margin-top: 40px;
   box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.3);
   border-radius: 30px 30px 0 0;
-  border: 1px solid #3742fa;
+  // border: 1px solid #3742fa;
 `;
 
 const StyledTextFields = styled.section`
@@ -179,5 +193,5 @@ const StyledHeadline = styled.h2`
 const StyledLine = styled.hr`
   width: 80%;
   max-width: 512px;
-  border: 0.2px solid darkslategray;
+  border-top: 0.1px solid rgba(55, 66, 250, 0.3);
 `;
