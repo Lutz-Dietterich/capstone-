@@ -2,7 +2,7 @@ import ListCard from "../ListCard";
 import styled from "styled-components";
 import { BreedData } from "../../pages/_app";
 import { useContext } from "react";
-import { Dna } from "react-loader-spinner";
+import LoadingSpinner from "../LoadingSpinner";
 
 export default function CardList() {
   const breedData = useContext(BreedData);
@@ -16,16 +16,7 @@ export default function CardList() {
           </div>
         ))
       ) : (
-        <div>
-          <Dna
-            visible={true}
-            height="80"
-            width="80"
-            ariaLabel="dna-loading"
-            wrapperStyle={{}}
-            wrapperClass="dna-wrapper"
-          />
-        </div>
+        <LoadingSpinner />
       )}
     </StyledCardList>
   );

@@ -2,29 +2,16 @@ import { useContext } from "react";
 import { Favorite } from "../../pages/_app";
 import ListCard from "../../components/ListCard";
 import styled from "styled-components";
-import { Dna } from "react-loader-spinner";
 import { AiOutlineHeart } from "react-icons/ai";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function FavoritesPage() {
   const { favorites } = useContext(Favorite);
 
   if (!favorites) {
-    // Wenn die Favoriten noch nicht geladen sind, zeigt ein Ladeindikator an.
-    return (
-      <div>
-        <Dna
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="dna-loading"
-          wrapperStyle={{}}
-          wrapperClass="dna-wrapper"
-        />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
-  // Filtern Sie die Elemente, die in der Favoritenliste enthalten sind.
   const favoriteItems = favorites.filter((item) => item.favorite);
 
   return (

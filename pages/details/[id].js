@@ -6,8 +6,8 @@ import Image from "next/image";
 import { TiArrowBackOutline } from "react-icons/ti";
 import StarRating from "../../components/StarRating";
 import Characteristics from "../../components/Characteristics";
-import { Dna } from "react-loader-spinner";
 import FavoriteButton from "../../components/FavoriteButton";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 export default function DetailsPage() {
   const breedData = useContext(BreedData);
@@ -21,18 +21,7 @@ export default function DetailsPage() {
   }
 
   if (!selectedBreed) {
-    return (
-      <div>
-        <Dna
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="dna-loading"
-          wrapperStyle={{}}
-          wrapperClass="dna-wrapper"
-        />
-      </div>
-    );
+    return <LoadingSpinner />;
   }
 
   return (
