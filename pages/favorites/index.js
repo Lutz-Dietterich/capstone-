@@ -3,6 +3,7 @@ import { Favorite } from "../../pages/_app";
 import ListCard from "../../components/ListCard";
 import styled from "styled-components";
 import { Dna } from "react-loader-spinner";
+import { AiOutlineHeart } from "react-icons/ai";
 
 export default function FavoritesPage() {
   const { favorites } = useContext(Favorite);
@@ -28,7 +29,9 @@ export default function FavoritesPage() {
 
   return (
     <div>
-      <h1>Favorite list</h1>
+      <StyledHeadline2>
+        <StyledHeadlineHeart /> My Favorites
+      </StyledHeadline2>
       <StyledCardList>
         {favoriteItems.length > 0 ? (
           favoriteItems.map((dog) => (
@@ -47,6 +50,23 @@ export default function FavoritesPage() {
     </div>
   );
 }
+
+const StyledHeadline2 = styled.h2`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 400;
+  margin: 0;
+  margin-bottom: 30px;
+`;
+
+const StyledHeadlineHeart = styled(AiOutlineHeart)`
+  margin-right: 10px;
+  color: red;
+`;
 
 const StyledCardList = styled.section`
   display: flex;
