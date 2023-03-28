@@ -30,7 +30,7 @@ export default function FavoritesPage() {
   return (
     <div>
       <StyledHeadline2>
-        <StyledHeadlineHeart /> My Favorites
+        <StyledHeadlineHeart /> MyFavorites
       </StyledHeadline2>
       <StyledCardList>
         {favoriteItems.length > 0 ? (
@@ -59,8 +59,8 @@ const StyledHeadline2 = styled.h2`
   text-align: center;
   font-size: 2rem;
   font-weight: 400;
-  margin: 0;
-  margin-bottom: 30px;
+  margin: 10px 0 30px 0;
+  line-height: 1.2;
 `;
 
 const StyledHeadlineHeart = styled(AiOutlineHeart)`
