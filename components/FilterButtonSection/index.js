@@ -36,7 +36,6 @@ const StyledWrapper = styled.div`
   position: fixed;
   display: flex;
   flex-direction: row;
-  align-items: center;
   width: 100%;
   gap: 20px;
   padding: 0 10px 8px;
@@ -57,11 +56,15 @@ const StyledFilterButtonSection = styled.section`
   }
 
   width: 90%;
-  max-width: 600px;
   gap: 10px;
   scrollbar-width: none;
   margin: auto;
   padding: 2px;
   background-color: #f5f5f5;
   z-index: 1;
+
+  @media (min-width: 1480px) {
+    justify-content: center;
+    width: 100%;
+  }
 `;
