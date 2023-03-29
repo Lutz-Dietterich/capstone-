@@ -1,39 +1,25 @@
 import styled from "styled-components";
 import FilterButton from "../FilterButton";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
+import { buttons } from "../../utils/data/buttons";
 
 export default function FilterButtoonSection() {
-  const scrollContainerRef = useRef(null);
-  const [isHovering, setIsHovering] = useState(false);
-
-  function handleScroll(evt) {
-    evt.preventDefault();
-    if (isHovering) {
-      const container = scrollContainerRef.current;
-      container.scrollLeft += evt.deltaY;
-    }
-  }
+  const [activeButtonId, setActiveButtonId] = useState({ id: 1 });
 
   return (
     <StyledWrapper>
-      <StyledFilterButtonSection
-        ref={scrollContainerRef}
-        onWheel={handleScroll}
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-      >
-        <FilterButton text={"All"} />
-        <FilterButton text={"good with children"} />
-        <FilterButton text={"protective"} />
-        <FilterButton text={"small"} />
-        <FilterButton text={"medium"} />
-        <FilterButton text={"large"} />
-        <FilterButton text={"All"} />
-        <FilterButton text={"All"} />
-        <FilterButton text={"All"} />
-        <FilterButton text={"All"} />
-        <FilterButton text={"All"} />
-        <FilterButton text={"All"} />
+      <StyledFilterButtonSection>
+        {buttons &&
+          buttons.map((type) => (
+            <FilterButton
+              key={type.id}
+              value={type.value}
+              text={type.name}
+              isactive={type.id === activeButtonId.id ? true : false}
+              id={type.id}
+              setActive={setActiveButtonId}
+            />
+          ))}
       </StyledFilterButtonSection>
     </StyledWrapper>
   );
