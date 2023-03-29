@@ -54,7 +54,7 @@ const StyledWrapper = styled.div`
 const StyledFilterButtonSection = styled.section`
   display: flex;
   flex-wrap: nowrap;
-  overflow: hidden;
+  overflow: auto;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
 
