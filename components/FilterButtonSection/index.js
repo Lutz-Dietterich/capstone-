@@ -58,6 +58,10 @@ const StyledFilterButtonSection = styled.section`
   scrollbar-width: none;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   width: 90%;
   max-width: 400px;
