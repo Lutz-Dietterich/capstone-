@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styled from "styled-components";
 
 export default function FilterButton({ id, text, isactive, setActive }) {
@@ -10,11 +9,6 @@ export default function FilterButton({ id, text, isactive, setActive }) {
 }
 
 const StyledFilterButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
   border: none;
   border-radius: 5px;
   color: ${({ isactive }) => (isactive ? "#fff" : "#000")};

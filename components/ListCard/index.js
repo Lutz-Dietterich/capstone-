@@ -32,8 +32,8 @@ const StyledCard = styled.article`
   flex-direction: column;
   align-items: center;
   width: 90vw;
-  max-width: 400px;
-  max-height: 400px;
+  max-width: 500px;
+  max-height: 500px;
   height: 90vw;
   background-color: #fff;
   border-radius: 30px;

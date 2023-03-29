@@ -1,14 +1,21 @@
 import styled from "styled-components";
 import FilterButton from "../FilterButton";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import { buttons } from "../../utils/data/buttons";
+import { useDraggable } from "react-use-draggable-scroll";
 
 export default function FilterButtoonSection() {
   const [activeButtonId, setActiveButtonId] = useState({ id: 1 });
+  const ref = useRef();
+  const { events } = useDraggable(ref);
 
   return (
     <StyledWrapper>
-      <StyledFilterButtonSection>
+      <StyledFilterButtonSection
+        className="flex max-w-xl space-x-3 overflow-x-scroll scrollbar-hide"
+        {...events}
+        ref={ref}
+      >
         {buttons &&
           buttons.map((type) => (
             <FilterButton
@@ -50,7 +57,7 @@ const StyledFilterButtonSection = styled.section`
   }
 
   width: 90%;
-  max-width: 400px;
+  max-width: 600px;
   gap: 10px;
   scrollbar-width: none;
   margin: auto;
