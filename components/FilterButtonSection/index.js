@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import FilterButton from "../FilterButton";
 import { useRef, useContext } from "react";
-import { buttons } from "../../utils/data/buttons";
+import { filterButtonsData } from "../../utils/data/filterButtonsData";
 import { useDraggable } from "react-use-draggable-scroll";
 import { Filter } from "../../pages/_app";
 
@@ -17,8 +17,8 @@ export default function FilterButtoonSection() {
         {...events}
         ref={ref}
       >
-        {buttons &&
-          buttons.map((type) => (
+        {filterButtonsData &&
+          filterButtonsData.map((type) => (
             <FilterButton
               key={type.id}
               value={type.value}

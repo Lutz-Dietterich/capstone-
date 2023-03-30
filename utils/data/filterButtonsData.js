@@ -1,4 +1,4 @@
-export const buttons = [
+export const filterButtonsData = [
   {
     id: 1,
     name: "All",

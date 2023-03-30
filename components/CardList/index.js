@@ -4,13 +4,13 @@ import { BreedData, Filter } from "../../pages/_app";
 import { useContext } from "react";
 import LoadingSpinner from "../LoadingSpinner";
 import FilterSection from "../FilterButtonSection";
-import { buttons } from "../../utils/data/buttons";
+import { filterButtonsData } from "../../utils/data/filterButtonsData";
 
 export default function CardList() {
   const breedData = useContext(BreedData);
   const activeButtonId = useContext(Filter);
 
-  const selectedButton = buttons.find(
+  const selectedButton = filterButtonsData.find(
     ({ id }) => id === activeButtonId.activeButtonId.id
   );
   if (!breedData) {
