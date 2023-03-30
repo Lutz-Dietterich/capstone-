@@ -18,7 +18,7 @@ export default function CardList() {
   }
   let filteredBreedData = breedData;
 
-  if (selectedButton && selectedButton.criteria) {
+  if (selectedButton?.criteria) {
     filteredBreedData = eval(selectedButton.criteria);
   }
 
