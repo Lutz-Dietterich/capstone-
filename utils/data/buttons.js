@@ -12,7 +12,7 @@ export const buttons = [
     value: "Small",
     active: false,
     criteria: `breedData.filter(
-      (breed) => breed.max_height_male < 12
+      (breed) => breed.max_height_male <= 15
     )`,
   },
   {
@@ -21,7 +21,7 @@ export const buttons = [
     value: "Medium",
     active: false,
     criteria: `breedData.filter(
-      (breed) => breed.max_height_male > 12 && breed.max_height_male < 25
+      (breed) => breed.max_height_male > 15 && breed.max_height_male <= 22
     )`,
   },
   {
@@ -30,11 +30,20 @@ export const buttons = [
     value: "Large",
     active: false,
     criteria: `breedData.filter(
-      (breed) => breed.max_height_male > 25 && breed.max_height_male < 100
+      (breed) => breed.max_height_male > 22 && breed.max_height_male <= 28
     )`,
   },
   {
     id: 5,
+    name: "extra Large",
+    value: "extra Large",
+    active: false,
+    criteria: `breedData.filter(
+      (breed) => breed.max_height_male > 28 && breed.max_height_male < 100
+    )`,
+  },
+  {
+    id: 6,
     name: "good with children",
     value: "good with children",
     active: false,
@@ -43,7 +52,7 @@ export const buttons = [
     )`,
   },
   {
-    id: 6,
+    id: 7,
     name: "protective",
     value: "protective",
     active: false,
@@ -52,7 +61,7 @@ export const buttons = [
     )`,
   },
   {
-    id: 7,
+    id: 8,
     name: "much energy",
     value: "much energy",
     active: false,
@@ -61,7 +70,7 @@ export const buttons = [
     )`,
   },
   {
-    id: 8,
+    id: 9,
     name: "little energy",
     value: "little energy",
     active: false,
@@ -70,7 +79,7 @@ export const buttons = [
     )`,
   },
   {
-    id: 9,
+    id: 10,
     name: "easy to train",
     value: "easy to train",
     active: false,
@@ -79,7 +88,7 @@ export const buttons = [
     )`,
   },
   {
-    id: 10,
+    id: 11,
     name: "good with other dogs",
     value: "good with other dogs",
     active: false,
@@ -88,7 +97,7 @@ export const buttons = [
     )`,
   },
   {
-    id: 11,
+    id: 12,
     name: "good with strangers",
     value: "good with strangers",
     active: false,
@@ -97,7 +106,7 @@ export const buttons = [
     )`,
   },
   {
-    id: 12,
+    id: 13,
     name: "no drooling",
     value: "no drooling",
     active: false,
