@@ -8,6 +8,7 @@ import StarRating from "../../components/StarRating";
 import Characteristics from "../../components/Characteristics";
 import FavoriteButton from "../../components/FavoriteButton";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import Link from "next/link";
 
 export default function DetailsPage() {
   const breedData = useContext(BreedData);
@@ -27,18 +28,20 @@ export default function DetailsPage() {
   return (
     <StyledDetailsPage>
       <StyledDetailsHeader>
-        <StyledBackButton type="button" onClick={() => router.back()}>
+        <StyledBackLink href={"/"} onClick={() => router.back()}>
           <TiArrowBackOutline />
           Back
-        </StyledBackButton>
+        </StyledBackLink>
         <FavoriteButton breedID={selectedBreed._id} />
       </StyledDetailsHeader>
-      <StyledImage
-        src={selectedBreed.image_link}
-        width={600}
-        height={500}
-        alt={selectedBreed.name}
-      />
+      <StyledImageContainer>
+        <StyledImage
+          src={selectedBreed.image_link}
+          width={600}
+          height={500}
+          alt={selectedBreed.name}
+        />
+      </StyledImageContainer>
       <StyledTextFields>
         <StyledHeadline>{selectedBreed.name}</StyledHeadline>
 
@@ -126,15 +129,21 @@ export default function DetailsPage() {
   );
 }
 
-const StyledBackButton = styled.button`
-  text-decoration: none;
-  background-color: #f5f5f5;
-  max-width: 550px;
-  padding-left: 20px;
-  font-size: 1rem;
-  font-weight: 500;
-  color: darkslategray;
-  border: none;
+const StyledDetailsPage = styled.article`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 612px;
+  height: 100%;
+
+  @media (min-width: 1024px) {
+    width: 100%;
+    max-width: 1200px;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 50px;
+  }
 `;
 
 const StyledDetailsHeader = styled.header`
@@ -145,28 +154,52 @@ const StyledDetailsHeader = styled.header`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  max-width: 550px;
+  max-width: 650px;
   padding-right: 10px;
+
+  @media (min-width: 1024px) {
+    width: 100%;
+    max-width: 1220px;
+  }
 `;
 
-const StyledDetailsPage = styled.article`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+const StyledBackLink = styled(Link)`
+  text-decoration: none;
+  background-color: #f5f5f5;
+  padding-left: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: darkslategray;
+  border: none;
+`;
+
+const StyledImageContainer = styled.div`
   width: 100%;
-  max-width: 800px;
-  height: 100%;
+  height: 67vw;
+  max-height: 400px;
+  overflow: hidden;
+  border-radius: 30px 30px 0 0;
+  box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.3);
+  z-index: -1;
+  margin-top: 40px;
+  margin-bottom: -23px;
+
+  @media (min-width: 1024px) {
+    position: sticky;
+    top: 190px;
+    margin-top: 120px;
+    border-radius: 30px;
+    height: 100%;
+
 `;
 
 const StyledImage = styled(Image)`
   width: 100%;
-  height: 90vw;
-  max-width: 512px;
-  max-height: 500px;
-  margin-top: 40px;
-  box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.3);
-  border-radius: 30px 30px 0 0;
-  object-fit: fill;
+  height: auto;
+  object-fit: cover;
+  transform: scale(1.1);
+  object-position: 50% 50%;
+  margin-top: 10px;
 `;
 
 const StyledTextFields = styled.section`
@@ -174,24 +207,53 @@ const StyledTextFields = styled.section`
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 512px;
-
   border: 1px solid #3742fa;
   border-radius: 30px;
-  margin-top: -23px;
   padding-bottom: 50px;
   background-color: #fff;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+
+  @media (min-width: 1024px) {
+    width: 100%;
+    max-width: 450px;
+    margin-top: 120px;
+  }
 `;
 
 const StyledHeadline = styled.h2`
   color: darkslategray;
   text-align: center;
   margin: 20px;
+
+  @media (min-width: 1024px) {
+    display: block;
+    position: fixed;
+    top: 120px;
+    left: 23%;
+    transform: translate(-50%, -50%);
+    width: 1200px;
+    background-color: transparent;
+    padding: 10px;
+  }
+
+  @media (min-width: 1150px) {
+    left: 27%;
+  }
+
+  @media (min-width: 1300px) {
+    left: 30%;
+  }
+
+  @media (min-width: 1400px) {
+    left: 33%;
+  }
+
+  @media (min-width: 1500px) {
+    left: 35%;
+  }
 `;
 
 const StyledLine = styled.hr`
   width: 80%;
-  max-width: 512px;
   border-top: 0.1px solid rgba(55, 66, 250, 0.3);
 `;
