@@ -8,10 +8,12 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export const BreedData = createContext();
 export const Favorite = createContext();
+export const Filter = createContext();
 
 export default function App({ Component, pageProps }) {
   const { data: breedData, error } = useSWR("/api/db", fetcher);
   const [favorites, setFavorites] = useState([]);
+  const [activeButtonId, setActiveButtonId] = useState({ id: 1 });
 
   useEffect(() => {
     const savedFavorites = localStorage.getItem("favorites");
@@ -40,13 +42,15 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
         <title>PawfectMatch</title>
       </Head>
-      <Favorite.Provider value={{ favorites, handleFavorite }}>
-        <BreedData.Provider value={breedData}>
-          <Layout>
-            <Component {...pageProps} />
-          </Layout>
-        </BreedData.Provider>
-      </Favorite.Provider>
+      <Filter.Provider value={{ activeButtonId, setActiveButtonId }}>
+        <Favorite.Provider value={{ favorites, handleFavorite }}>
+          <BreedData.Provider value={breedData}>
+            <Layout>
+              <Component {...pageProps} />
+            </Layout>
+          </BreedData.Provider>
+        </Favorite.Provider>
+      </Filter.Provider>
     </>
   );
 }

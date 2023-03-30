@@ -35,7 +35,7 @@ export default function DetailsPage() {
       </StyledDetailsHeader>
       <StyledImage
         src={selectedBreed.image_link}
-        width={500}
+        width={600}
         height={500}
         alt={selectedBreed.name}
       />
@@ -166,7 +166,7 @@ const StyledImage = styled(Image)`
   margin-top: 40px;
   box-shadow: 0 5px 10px 2px rgba(0, 0, 0, 0.3);
   border-radius: 30px 30px 0 0;
-  // border: 1px solid #3742fa;
+  object-fit: fill;
 `;
 
 const StyledTextFields = styled.section`

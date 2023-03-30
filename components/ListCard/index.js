@@ -66,4 +66,5 @@ const StyledCardImage = styled(Image)`
   width: 100%;
   height: 100%;
   border-radius: 30px;
+  object-fit: fill;
 `;

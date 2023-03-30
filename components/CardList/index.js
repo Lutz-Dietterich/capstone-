@@ -1,20 +1,34 @@
 import ListCard from "../ListCard";
 import styled from "styled-components";
-import { BreedData } from "../../pages/_app";
+import { BreedData, Filter } from "../../pages/_app";
 import { useContext } from "react";
 import LoadingSpinner from "../LoadingSpinner";
 import FilterSection from "../FilterButtonSection";
+import { buttons } from "../../utils/data/buttons";
 
 export default function CardList() {
   const breedData = useContext(BreedData);
+  const activeButtonId = useContext(Filter);
+
+  const selectedButton = buttons.find(
+    ({ id }) => id === activeButtonId.activeButtonId.id
+  );
+  if (!breedData) {
+    return <LoadingSpinner />;
+  }
+  let filteredBreedData = breedData;
+
+  if (selectedButton && selectedButton.criteria) {
+    filteredBreedData = eval(selectedButton.criteria);
+  }
 
   return (
     <>
       <FilterSection />
 
       <StyledCardList>
-        {breedData ? (
-          breedData.map((dog) => (
+        {filteredBreedData ? (
+          filteredBreedData.map((dog) => (
             <div key={dog._id}>
               <ListCard
                 name={dog.name}

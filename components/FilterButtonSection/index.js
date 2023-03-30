@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import FilterButton from "../FilterButton";
-import { useRef, useState } from "react";
+import { useRef, useContext } from "react";
 import { buttons } from "../../utils/data/buttons";
 import { useDraggable } from "react-use-draggable-scroll";
+import { Filter } from "../../pages/_app";
 
 export default function FilterButtoonSection() {
-  const [activeButtonId, setActiveButtonId] = useState({ id: 1 });
+  const { activeButtonId, setActiveButtonId } = useContext(Filter);
   const ref = useRef();
   const { events } = useDraggable(ref);
 

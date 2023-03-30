@@ -1,8 +1,13 @@
 import styled from "styled-components";
 
 export default function FilterButton({ id, text, isactive, setActive }) {
+  const handleClick = () => {
+    setActive({ id });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
-    <StyledFilterButton isactive={isactive} onClick={() => setActive({ id })}>
+    <StyledFilterButton isactive={isactive} onClick={handleClick}>
       {text}
     </StyledFilterButton>
   );
