@@ -114,4 +114,22 @@ export const filterButtonsData = [
       (breed) => breed.drooling < 2
     )`,
   },
+  {
+    id: 14,
+    name: "easy to care for",
+    value: "easy to care for",
+    active: false,
+    criteria: `breedData.filter(
+      (breed) => breed.grooming <= 2
+    )`,
+  },
+  {
+    id: 15,
+    name: "little barking",
+    value: "little barking",
+    active: false,
+    criteria: `breedData.filter(
+      (breed) => breed.barking <= 2
+    )`,
+  },
 ];

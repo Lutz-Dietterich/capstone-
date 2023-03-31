@@ -65,7 +65,6 @@ const StyledFilterButtonSection = styled.section`
   z-index: 1;
 
   @media (min-width: 1480px) {
-    justify-content: center;
-    width: 100%;
+    width: 90%;
   }
 `;

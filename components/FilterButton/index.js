@@ -21,7 +21,7 @@ const StyledFilterButton = styled.button`
   font-weight: 200;
   padding: 3px 15px;
   cursor: pointer;
-  box-shadow: 0 0 2px 0 rgba(55, 66, 250, 0.4);
+  box-shadow: 0 0 2px 0 rgba(55, 66, 250, 1);
   background-color: ${({ isactive }) => (isactive ? "#3742fa" : "#fff")};
 
   &:hover {
