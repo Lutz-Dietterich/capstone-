@@ -64,4 +64,12 @@ const StyledCardList = styled.section`
   gap: 20px;
   margin-top: 20px;
   margin-bottom: 60px;
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+  }
 `;
