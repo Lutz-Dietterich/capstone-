@@ -5,13 +5,22 @@ import { useContext } from "react";
 import LoadingSpinner from "../LoadingSpinner";
 import FilterSection from "../FilterButtonSection";
 import { filterButtonsData } from "../../utils/data/filterButtonsData";
+import { useState } from "react";
+import { useEffect } from "react";
+import Field from "../SearchField";
 
 export default function CardList() {
   const breedData = useContext(BreedData);
-  const activeButtonId = useContext(Filter);
+  const { activeButtonId, setActiveButtonId } = useContext(Filter);
+
+  const [searchTerm, setSearchTerm] = useState("");
+
+  useEffect(() => {
+    setActiveButtonId({ id: 1 });
+  }, [searchTerm]);
 
   const selectedButton = filterButtonsData.find(
-    ({ id }) => id === activeButtonId.activeButtonId.id
+    ({ id }) => id === activeButtonId.id
   );
   if (!breedData) {
     return <LoadingSpinner />;
@@ -22,8 +31,16 @@ export default function CardList() {
     filteredBreedData = eval(selectedButton.criteria);
   }
 
+  filteredBreedData = filteredBreedData.filter((breed) =>
+    breed.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <>
+      <Field
+        value={searchTerm}
+        handleSearchChange={(e) => setSearchTerm(e.target.value)}
+      />
       <FilterSection />
 
       <StyledCardList>
@@ -60,6 +77,7 @@ const StyledCardList = styled.section`
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    max-width: 100%;
+    max-width: 1300px;
+    margin-top: 70px;
   }
 `;

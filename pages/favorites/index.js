@@ -70,6 +70,8 @@ const StyledCardList = styled.section`
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    max-width: 100%;
+    max-width: 1300px;
+    margin-top: 70px;
+  }
   }
 `;
