@@ -17,41 +17,6 @@ export default function Field({ value, handleSearchChange }) {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(() => {
-    const searchField = searchFieldRef.current;
-    if (searchField && showSearch) {
-      searchField.style.display = "block";
-      const initialWidth = searchField.offsetWidth;
-      searchField.style.right = `-${initialWidth}px`;
-      searchField.style.transition = "right 0.3s ease-in-out";
-      setTimeout(() => {
-        searchField.style.right = "0px";
-      }, 0);
-    } else if (searchField) {
-      const finalWidth = searchField.offsetWidth;
-      searchField.style.right = `-${finalWidth}px`;
-      setTimeout(() => {
-        searchField.style.display = "none";
-        searchField.style.transition = "";
-      }, 300);
-    }
-  }, [showSearch]);
-
-  useEffect(() => {
-    const searchField = searchFieldRef.current;
-    if (searchField) {
-      const originalPosition = searchField.style.position;
-      searchField.addEventListener("focus", () => {
-        searchField.style.position = "absolute";
-        searchField.style.bottom = "auto";
-        searchField.style.top = "0";
-      });
-      searchField.addEventListener("blur", () => {
-        searchField.style.position = originalPosition;
-      });
-    }
-  }, []);
-
   return (
     <SearchWrapper>
       {showSearch && (
