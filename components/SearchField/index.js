@@ -37,6 +37,21 @@ export default function Field({ value, handleSearchChange }) {
     }
   }, [showSearch]);
 
+  useEffect(() => {
+    const searchField = searchFieldRef.current;
+    if (searchField) {
+      const originalPosition = searchField.style.position;
+      searchField.addEventListener("focus", () => {
+        searchField.style.position = "absolute";
+        searchField.style.bottom = "auto";
+        searchField.style.top = "0";
+      });
+      searchField.addEventListener("blur", () => {
+        searchField.style.position = originalPosition;
+      });
+    }
+  }, []);
+
   return (
     <SearchWrapper>
       {showSearch && (
