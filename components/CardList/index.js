@@ -39,7 +39,10 @@ export default function CardList() {
     <>
       <Field
         value={searchTerm}
-        handleSearchChange={(e) => setSearchTerm(e.target.value)}
+        handleSearchChange={(e) => {
+          e.preventDefault();
+          setSearchTerm(e.target.value);
+        }}
       />
       <FilterSection />
 
