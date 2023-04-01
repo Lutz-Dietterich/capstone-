@@ -54,6 +54,13 @@ export default function Field({ value, handleSearchChange }) {
 
   return (
     <SearchWrapper>
+      {value && (
+        <ClearButton
+          onClick={() => handleSearchChange({ target: { value: "" } })}
+        >
+          <AiOutlineClose />
+        </ClearButton>
+      )}
       {showSearch && (
         <SearchFieldWrapper ref={searchFieldRef}>
           <SearchField
@@ -63,13 +70,6 @@ export default function Field({ value, handleSearchChange }) {
             onChange={handleSearchChange}
           />
         </SearchFieldWrapper>
-      )}
-      {value && (
-        <ClearButton
-          onClick={() => handleSearchChange({ target: { value: "" } })}
-        >
-          <AiOutlineClose />
-        </ClearButton>
       )}
       <SearchButton onClick={handleSearchClick}>
         <AiOutlineSearch size={30} />
