@@ -7,7 +7,7 @@ import FilterSection from "../FilterButtonSection";
 import { filterButtonsData } from "../../utils/data/filterButtonsData";
 import { useState } from "react";
 import { useEffect } from "react";
-import Field from "../SearchField";
+import SearchField from "../SearchField";
 
 export default function CardList() {
   const breedData = useContext(BreedData);
@@ -31,16 +31,18 @@ export default function CardList() {
     filteredBreedData = eval(selectedButton.criteria);
   }
 
+  // TODO: replace eval function
+
   filteredBreedData = filteredBreedData.filter((breed) =>
     breed.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  filteredBreedData.sort((a, b) => a.name.localeCompare(b.name));
   return (
     <>
-      <Field
+      <SearchField
         value={searchTerm}
         handleSearchChange={(e) => {
-          e.preventDefault();
           setSearchTerm(e.target.value);
         }}
       />

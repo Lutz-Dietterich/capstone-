@@ -1,94 +1,72 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { AiOutlineSearch, AiOutlineClose } from "react-icons/ai";
+import { keyframes } from "styled-components";
 
-export default function Field({ value, handleSearchChange }) {
+export default function SearchField({ value, handleSearchChange }) {
   const [showSearch, setShowSearch] = useState(false);
-  const searchFieldRef = useRef(null);
 
   const handleSearchClick = () => setShowSearch(!showSearch);
 
-  // useEffect(() => {
-  //   const handleResize = () => {
-  //     setShowSearch(window.innerWidth >= 900);
-  //   };
-  //   window.addEventListener("resize", handleResize);
-  //   handleResize();
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
-
-  // useEffect(() => {
-  //   const searchField = searchFieldRef.current;
-  //   if (searchField && showSearch) {
-  //     searchField.style.display = "block";
-  //     const initialWidth = searchField.offsetWidth;
-  //     searchField.style.right = `-${initialWidth}px`;
-  //     searchField.style.transition = "right 0.3s ease-in-out";
-  //     setTimeout(() => {
-  //       searchField.style.right = "0px";
-  //     }, 0);
-  //   } else if (searchField) {
-  //     const finalWidth = searchField.offsetWidth;
-  //     searchField.style.right = `-${finalWidth}px`;
-  //     setTimeout(() => {
-  //       searchField.style.display = "none";
-  //       searchField.style.transition = "";
-  //     }, 300);
-  //   }
-  // }, [showSearch]);
-
-  // useEffect(() => {
-  //   const searchField = searchFieldRef.current;
-  //   if (searchField) {
-  //     const originalPosition = searchField.style.position;
-  //     searchField.addEventListener("focus", () => {
-  //       searchField.style.position = "absolute";
-  //       searchField.style.bottom = "auto";
-  //       searchField.style.top = "0";
-  //     });
-  //     searchField.addEventListener("blur", () => {
-  //       searchField.style.position = originalPosition;
-  //     });
-  //   }
-  // }, []);
+  useEffect(() => {
+    const handleResize = () => {
+      setShowSearch(window.innerWidth >= 900);
+    };
+    window.addEventListener("resize", handleResize);
+    handleResize();
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
-    <SearchWrapper>
-      {value && (
-        <ClearButton
-          onClick={() => handleSearchChange({ target: { value: "" } })}
-        >
-          <AiOutlineClose />
-        </ClearButton>
-      )}
+    <StyledSearchWrapper>
       {showSearch && (
-        <SearchFieldWrapper ref={searchFieldRef}>
-          <SearchField
+        <StyledSearchFieldWrapper className={showSearch ? "show" : ""}>
+          <StyledSearchField
             type="text"
             placeholder="Search breeds..."
             value={value}
             onChange={handleSearchChange}
           />
-        </SearchFieldWrapper>
+        </StyledSearchFieldWrapper>
       )}
-      <SearchButton onClick={handleSearchClick}>
-        <AiOutlineSearch size={30} />
-      </SearchButton>
-    </SearchWrapper>
+      {showSearch && value && (
+        <StyledClearButton
+          className={showSearch ? "show" : ""}
+          onClick={() => handleSearchChange({ target: { value: "" } })}
+        >
+          <AiOutlineClose />
+        </StyledClearButton>
+      )}
+      <StyledSearchButton onClick={handleSearchClick}>
+        <AiOutlineSearch size={25} />
+      </StyledSearchButton>
+    </StyledSearchWrapper>
   );
 }
 
-const SearchWrapper = styled.div`
+const slideInAnimation = keyframes`
+  from {
+    transform: translateX(70%);
+    opacity: 0;
+
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+`;
+
+const StyledSearchWrapper = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   position: fixed;
-  top: 27px;
+  top: 29px;
   width: 700px;
   z-index: 100;
 
   @media (min-width: 900px) {
-    margin-right: 70px;
+    margin-right: 90px;
   }
 
   @media (max-width: 1080px) {
@@ -96,12 +74,20 @@ const SearchWrapper = styled.div`
   }
 `;
 
-const SearchFieldWrapper = styled.div`
+const StyledSearchFieldWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   position: relative;
-  width: 68vw;
+  width: 69vw;
+
+  &.show {
+    display: block;
+    animation: ${slideInAnimation} 0.5s ease-in;
+    animation-fill-mode: forwards;
+  }
 `;
 
-const SearchField = styled.input`
+const StyledSearchField = styled.input`
   width: 600px;
   height: 30px;
   border-radius: 5px;
@@ -124,7 +110,7 @@ const SearchField = styled.input`
   }
 `;
 
-const SearchButton = styled.button`
+const StyledSearchButton = styled.button`
   z-index: 2;
   background-color: transparent;
   border: none;
@@ -135,19 +121,21 @@ const SearchButton = styled.button`
   &:hover {
     transform: scale(1.2);
   }
-
-  i {
-    font-size: 1.5rem;
-  }
 `;
 
-const ClearButton = styled.button`
+const StyledClearButton = styled.button`
   position: absolute;
-  top: 55%;
-  right: 10px;
-  transform: translate(0, -50%);
+  right: 40px;
   background-color: transparent;
   border: none;
   cursor: pointer;
   padding: 5px;
+  z-index: 2;
+
+  &.show {
+    display: block;
+    animation: ${slideInAnimation} 0.5s ease-in;
+    animation-fill-mode: forwards;
+    top: 5px;
+  }
 `;
