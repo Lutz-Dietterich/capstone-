@@ -20,19 +20,19 @@ export default function SearchField({ value, handleSearchChange }) {
   return (
     <StyledSearchWrapper>
       {showSearch && (
-        <StyledSearchFieldWrapper className={showSearch ? "show" : ""}>
+        <StyledSearchFieldWrapper showSearch={showSearch}>
           <StyledSearchField
             type="text"
             placeholder="Search breeds..."
             value={value}
-            onChange={handleSearchChange}
+            onChange={(e) => handleSearchChange(e.target.value)}
           />
         </StyledSearchFieldWrapper>
       )}
       {showSearch && value && (
         <StyledClearButton
-          className={showSearch ? "show" : ""}
-          onClick={() => handleSearchChange({ target: { value: "" } })}
+          showSearch={showSearch}
+          onClick={() => handleSearchChange("")}
         >
           <AiOutlineClose />
         </StyledClearButton>
@@ -75,16 +75,14 @@ const StyledSearchWrapper = styled.div`
 `;
 
 const StyledSearchFieldWrapper = styled.div`
-  display: flex;
+  display: ${(props) => (props.showSearch ? "block" : "none")};
   justify-content: center;
   position: relative;
   width: 69vw;
 
-  &.show {
-    display: block;
-    animation: ${slideInAnimation} 0.5s ease-in;
-    animation-fill-mode: forwards;
-  }
+  animation: ${(props) => (props.showSearch ? slideInAnimation : "")} 0.5s
+    ease-in;
+  animation-fill-mode: ${(props) => (props.showSearch ? "forwards" : "")};
 `;
 
 const StyledSearchField = styled.input`

@@ -42,8 +42,8 @@ export default function CardList() {
     <>
       <SearchField
         value={searchTerm}
-        handleSearchChange={(e) => {
-          setSearchTerm(e.target.value);
+        handleSearchChange={(newTerm) => {
+          setSearchTerm(newTerm);
         }}
       />
       <FilterSection />
