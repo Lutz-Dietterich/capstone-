@@ -40,7 +40,7 @@ const StyledWrapper = styled.div`
   width: 100%;
   gap: 20px;
   padding: 0 10px 8px;
-  background-color: #f5f5f5;
+  background-color: #f1f1f1f1;
   z-index: 1;
 `;
 
@@ -61,7 +61,7 @@ const StyledFilterButtonSection = styled.section`
   scrollbar-width: none;
   margin: auto;
   padding: 2px;
-  background-color: #f5f5f5;
+  background-color: #f1f1f1f1;
   z-index: 1;
 
   @media (min-width: 1480px) {
