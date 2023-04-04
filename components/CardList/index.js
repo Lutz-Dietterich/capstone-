@@ -5,33 +5,23 @@ import { useContext } from "react";
 import LoadingSpinner from "../LoadingSpinner";
 import FilterSection from "../FilterButtonSection";
 import { filterButtonsData } from "../../utils/data/filterButtonsData";
-import { useState } from "react";
-import { useEffect } from "react";
 import SearchField from "../SearchField";
 
 export default function CardList() {
   const breedData = useContext(BreedData);
-  const { activeButtonId, setActiveButtonId } = useContext(Filter);
-
-  const [searchTerm, setSearchTerm] = useState("");
-
-  useEffect(() => {
-    setActiveButtonId({ id: 1 });
-  }, [searchTerm]);
+  const { activeButtonId, searchTerm, handleSearchTerm } = useContext(Filter);
 
   const selectedButton = filterButtonsData.find(
-    ({ id }) => id === activeButtonId.id
+    ({ id }) => id === activeButtonId
   );
   if (!breedData) {
     return <LoadingSpinner />;
   }
   let filteredBreedData = breedData;
 
-  if (selectedButton?.criteria) {
-    filteredBreedData = eval(selectedButton.criteria);
+  if (selectedButton?.filter) {
+    filteredBreedData = breedData.filter(selectedButton.filter);
   }
-
-  // TODO: replace eval function
 
   filteredBreedData = filteredBreedData.filter((breed) =>
     breed.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -43,7 +33,7 @@ export default function CardList() {
       <SearchField
         value={searchTerm}
         handleSearchChange={(newTerm) => {
-          setSearchTerm(newTerm);
+          handleSearchTerm(newTerm);
         }}
       />
       <FilterSection />
