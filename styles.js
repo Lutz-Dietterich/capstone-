@@ -9,7 +9,7 @@ export default createGlobalStyle`
   body {
     margin: 0;
     font-family: system-ui;
-    background-color: #f1f1f1f1;
+    background-color: #fff7f7;
     color: darkslategray;
     letter-spacing: 0.5px;
   }
