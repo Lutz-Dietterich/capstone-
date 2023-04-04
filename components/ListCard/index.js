@@ -25,6 +25,10 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   width: 100%;
   height: 90vw;
+
+  @media (min-width: 768px) {
+    height: 40vw;
+  }
 `;
 
 const StyledCard = styled.article`
@@ -41,6 +45,13 @@ const StyledCard = styled.article`
   &:hover {
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
     border: 1px solid #3742fa;
+  }
+
+  @media (min-width: 768px) {
+    width: 40vw;
+    height: 40vw;
+    max-width: 400px;
+    max-height: 400px;
   }
 `;
 

@@ -6,7 +6,7 @@ import { useDraggable } from "react-use-draggable-scroll";
 import { Filter } from "../../pages/_app";
 
 export default function FilterButtoonSection() {
-  const { activeButtonId, setActiveButtonId } = useContext(Filter);
+  const { activeButtonId, handleActiveButtonId } = useContext(Filter);
   const ref = useRef();
   const { events } = useDraggable(ref);
 
@@ -23,9 +23,9 @@ export default function FilterButtoonSection() {
               key={type.id}
               value={type.value}
               text={type.name}
-              isactive={type.id === activeButtonId.id ? true : false}
+              isactive={type.id === activeButtonId ? true : false}
               id={type.id}
-              setActive={setActiveButtonId}
+              setActive={handleActiveButtonId}
             />
           ))}
       </StyledFilterButtonSection>

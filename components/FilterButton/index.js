@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export default function FilterButton({ id, text, isactive, setActive }) {
   const handleClick = () => {
-    setActive({ id });
+    setActive(id);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
