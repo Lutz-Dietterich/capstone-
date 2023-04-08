@@ -6,11 +6,12 @@ import AnswerSlider from "../../components/Slider";
 import AnswerSliderTwo from "../../components/SliderTwo";
 import Link from "next/link";
 import { useState } from "react";
+import { useEffect } from "react";
 
 export default function DetailsPage() {
   const router = useRouter();
   const { id } = router.query;
-  const [value, setValue] = useState([20, 50]);
+  const [value, setValue] = useState([50, 70]);
   const [showHandle, setShowHandle] = useState(false);
 
   const handleValue = (value) => {
@@ -21,10 +22,16 @@ export default function DetailsPage() {
   const selectedQuestion = personalityQuestionsData.find(
     (question) => question.id === parseInt(id)
   );
+  useEffect(() => {
+    if (selectedQuestion) {
+      setValue(selectedQuestion.startValue);
+    }
+  }, [selectedQuestion]);
 
-  if (!selectedQuestion) {
+  if (!selectedQuestion || !value) {
     return <LoadingSpinner />;
   }
+
   const nextQuestionId = selectedQuestion.id + 1;
 
   return (
@@ -34,14 +41,14 @@ export default function DetailsPage() {
       <StyledQestionCard>
         <h3>{selectedQuestion.question}</h3>
         <p>{selectedQuestion.description}</p>
-        {value.length < 2 ? (
-          <AnswerSlider
+        {value.length > 1 ? (
+          <AnswerSliderTwo
             value={value}
             showHandle={showHandle}
             handleValue={handleValue}
           />
         ) : (
-          <AnswerSliderTwo
+          <AnswerSlider
             value={value}
             showHandle={showHandle}
             handleValue={handleValue}
@@ -56,7 +63,6 @@ export default function DetailsPage() {
             }
             onClick={() => {
               setShowHandle(false);
-              setValue([50]);
             }}
           >
             {nextQuestionId <= 10 ? "Next" : "Show Results"}
