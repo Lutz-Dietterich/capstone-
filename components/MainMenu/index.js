@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BsHouseDoor } from "react-icons/bs";
 import { AiOutlineHeart } from "react-icons/ai";
+import { RiQuestionnaireLine } from "react-icons/ri";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -15,6 +16,16 @@ export default function MainMenu() {
             className={router.pathname === "/" ? "active" : ""}
           >
             <BsHouseDoor />
+          </StyledLink>
+        </StyledListItem>
+        <StyledListItem>
+          <StyledLink
+            href={"/personalityTest/1"}
+            className={
+              router.pathname.includes("/personalityTest") ? "active" : ""
+            }
+          >
+            <RiQuestionnaireLine />
           </StyledLink>
         </StyledListItem>
         <StyledListItem>
