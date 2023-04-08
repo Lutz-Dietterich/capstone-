@@ -3,6 +3,7 @@ import styled from "styled-components";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { personalityQuestionsData } from "../../utils/data/personalityQuestions";
 import AnswerSlider from "../../components/Slider";
+import AnswerSliderTwo from "../../components/SliderTwo";
 import Link from "next/link";
 
 export default function DetailsPage() {
@@ -17,8 +18,6 @@ export default function DetailsPage() {
   }
   const nextQuestionId = selectedQuestion.id + 1;
 
-  console.log(selectedQuestion);
-
   return (
     <>
       <StyledHeadline2>personalityTest</StyledHeadline2>
@@ -27,6 +26,7 @@ export default function DetailsPage() {
         <h3>{selectedQuestion.question}</h3>
         <p>{selectedQuestion.description}</p>
         <AnswerSlider />
+        <AnswerSliderTwo />
         <StyledLink
           href={
             nextQuestionId <= 10
@@ -34,7 +34,7 @@ export default function DetailsPage() {
               : "/personalityTest/results"
           }
         >
-          {nextQuestionId <= 10 ? "Next" : "Show Results"}{" "}
+          {nextQuestionId <= 10 ? "Next" : "Show Results"}
         </StyledLink>
       </StyledQestionCard>
     </>
@@ -62,14 +62,24 @@ const StyledQestionCard = styled.article`
   border: 1px solid #ccc;
   border-radius: 30px;
   margin: 10px auto;
-  width: 90%;
+  width: 100%;
+  max-width: 500px;
   background-color: #fff;
+
+  p {
+    width: 80%;
+  }
 `;
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: #000;
-  font-weight: 700;
-  font-size: 1.2rem;
-  margin: 10px 0;
+  width: 80%;
+  max-width: 200px;
+  color: #fff;
+  font-weight: 400;
+  font-size: 1rem;
+  margin: 20px;
+  padding: 10px;
+  background-color: #3742fa;
+  border-radius: 30px;
 `;

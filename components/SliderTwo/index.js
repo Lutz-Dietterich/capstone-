@@ -3,26 +3,33 @@ import "rc-slider/assets/index.css";
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function AnswerSlider() {
-  const [value, setValue] = useState(50);
+export default function AnswerSliderTwo() {
+  const [value, setValue] = useState([20, 80]);
 
   const [showHandle, setShowHandle] = useState(false);
-  console.log(showHandle);
 
   return (
     <StyledSliderWrapper>
       <StyledSlider
         min={1}
         max={100}
-        defaultValue={50}
+        defaultValue={[20, 80]}
         value={value}
         onChange={(value) => {
           setValue(value);
           setShowHandle(true);
         }}
+        range={true}
       />
 
-      {showHandle && <StyledHandle value={value}>{value}%</StyledHandle>}
+      {showHandle && (
+        <StyledHandle
+          left={((value[0] - 1) / 99) * 100}
+          right={((100 - value[1] - 1) / 99) * 100}
+        >
+          {value[0]}% - {value[1]}%
+        </StyledHandle>
+      )}
     </StyledSliderWrapper>
   );
 }
@@ -50,18 +57,6 @@ const StyledSlider = styled(Slider)`
     );
     height: 24px;
     border-radius: 12px;
-
-    &:after {
-      content: "Text im Track";
-      position: absolute;
-      left: 0;
-      color: #ffffff;
-      font-size: 10px;
-      font-weight: 200;
-      line-height: 24px;
-      padding: 0 8px;
-      white-space: nowrap;
-    }
   }
 
   .rc-slider-handle {
@@ -87,13 +82,15 @@ const StyledHandle = styled.div`
   color: #ffffff;
   position: absolute;
   top: -40px;
-  left: ${({ value }) => `calc(${((value - 1) / 99) * 100}% - 18px)`};
-  width: 32px;
+  left: ${({ left }) => `calc(${left}% - 18px)`};
+  right: ${({ right }) => `calc(${right}% - 18px)`};
+  width: auto;
   height: 32px;
-  border-radius: 50%;
+  border-radius: 16px;
   line-height: 32px;
   text-align: center;
   font-size: 10px;
   white-space: nowrap;
   z-index: 1;
+  padding: 0 16px;
 `;
