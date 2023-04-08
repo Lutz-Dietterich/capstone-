@@ -3,21 +3,16 @@ import "rc-slider/assets/index.css";
 import styled from "styled-components";
 import { useState } from "react";
 
-export default function AnswerSliderTwo() {
-  const [value, setValue] = useState([20, 80]);
-
-  const [showHandle, setShowHandle] = useState(false);
-
+export default function AnswerSliderTwo({ value, handleValue, showHandle }) {
   return (
     <StyledSliderWrapper>
       <StyledSlider
         min={1}
         max={100}
-        defaultValue={[20, 80]}
+        defaultValue={value}
         value={value}
         onChange={(value) => {
-          setValue(value);
-          setShowHandle(true);
+          handleValue(value);
         }}
         range={true}
       />
@@ -27,7 +22,7 @@ export default function AnswerSliderTwo() {
           left={((value[0] - 1) / 99) * 100}
           right={((100 - value[1] - 1) / 99) * 100}
         >
-          {value[0]}% - {value[1]}%
+          {value[0]} cm - {value[1]} cm
         </StyledHandle>
       )}
     </StyledSliderWrapper>

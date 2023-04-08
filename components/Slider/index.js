@@ -1,24 +1,21 @@
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styled from "styled-components";
-import { useState } from "react";
 
-export default function AnswerSlider() {
-  const [value, setValue] = useState(50);
-
-  const [showHandle, setShowHandle] = useState(false);
+export default function AnswerSlider({ value, handleValue, showHandle }) {
   console.log(showHandle);
+  console.log(value);
+  console.log(handleValue);
 
   return (
     <StyledSliderWrapper>
       <StyledSlider
         min={1}
         max={100}
-        defaultValue={50}
+        defaultValue={value}
         value={value}
         onChange={(value) => {
-          setValue(value);
-          setShowHandle(true);
+          handleValue(value);
         }}
       />
 

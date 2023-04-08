@@ -5,10 +5,19 @@ import { personalityQuestionsData } from "../../utils/data/personalityQuestions"
 import AnswerSlider from "../../components/Slider";
 import AnswerSliderTwo from "../../components/SliderTwo";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function DetailsPage() {
   const router = useRouter();
   const { id } = router.query;
+  const [value, setValue] = useState([20, 50]);
+  const [showHandle, setShowHandle] = useState(false);
+
+  const handleValue = (value) => {
+    setValue(value);
+    setShowHandle(true);
+  };
+
   const selectedQuestion = personalityQuestionsData.find(
     (question) => question.id === parseInt(id)
   );
@@ -25,17 +34,36 @@ export default function DetailsPage() {
       <StyledQestionCard>
         <h3>{selectedQuestion.question}</h3>
         <p>{selectedQuestion.description}</p>
-        <AnswerSlider />
-        <AnswerSliderTwo />
-        <StyledLink
-          href={
-            nextQuestionId <= 10
-              ? `/personalityTest/${nextQuestionId}`
-              : "/personalityTest/results"
-          }
-        >
-          {nextQuestionId <= 10 ? "Next" : "Show Results"}
-        </StyledLink>
+        {value.length < 2 ? (
+          <AnswerSlider
+            value={value}
+            showHandle={showHandle}
+            handleValue={handleValue}
+          />
+        ) : (
+          <AnswerSliderTwo
+            value={value}
+            showHandle={showHandle}
+            handleValue={handleValue}
+          />
+        )}
+        {showHandle ? (
+          <StyledLink
+            href={
+              nextQuestionId <= 10
+                ? `/personalityTest/${nextQuestionId}`
+                : "/personalityTest/results"
+            }
+            onClick={() => {
+              setShowHandle(false);
+              setValue([50]);
+            }}
+          >
+            {nextQuestionId <= 10 ? "Next" : "Show Results"}
+          </StyledLink>
+        ) : (
+          <h4>bitte antworten</h4>
+        )}
       </StyledQestionCard>
     </>
   );
