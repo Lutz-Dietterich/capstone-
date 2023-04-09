@@ -1,25 +1,23 @@
-import { useContext } from "react";
-import { Favorite } from "../../pages/_app";
 import ListCard from "../../components/ListCard";
 import styled from "styled-components";
 import { AiOutlineHeart } from "react-icons/ai";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { useRouter } from "next/router";
 
 export default function ResultPage() {
-  const { favorites } = useContext(Favorite);
+  const router = useRouter();
+  const parsedData = JSON.parse(router.query.nextBreedData ?? "null");
 
-  if (!favorites) {
+  if (!parsedData) {
     return <LoadingSpinner />;
   }
-
-  const favoriteItems = favorites.filter((item) => item.favorite);
 
   return (
     <div>
       <StyledHeadline2>Test Result</StyledHeadline2>
       <StyledCardList>
-        {favoriteItems.length > 0 ? (
-          favoriteItems.map((dog) => (
+        {parsedData ? (
+          parsedData.map((dog) => (
             <div key={dog._id}>
               <ListCard
                 name={dog.name}

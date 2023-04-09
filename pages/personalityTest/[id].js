@@ -14,8 +14,11 @@ export default function pesonalityTestPage() {
   const breedData = useContext(BreedData);
   const router = useRouter();
   const { id } = router.query;
+  const parsedData = JSON.parse(router.query.nextBreedData ?? "null");
   const [value, setValue] = useState([]);
   const [showHandle, setShowHandle] = useState(false);
+
+  let testBreedData;
 
   const handleValue = (value) => {
     setValue(value);
@@ -36,7 +39,11 @@ export default function pesonalityTestPage() {
     return <LoadingSpinner />;
   }
 
-  let testBreedData = breedData;
+  if (parsedData && parsedData.length > 0) {
+    testBreedData = parsedData;
+  } else {
+    testBreedData = breedData;
+  }
 
   if (selectedQuestion && breedData && value.length > 1) {
     testBreedData = breedData.filter(
@@ -44,8 +51,8 @@ export default function pesonalityTestPage() {
         breed.min_height_male * 2.54 >= value[0] &&
         breed.max_height_male * 2.54 <= value[1]
     );
-  } else if (selectedQuestion && breedData) {
-    testBreedData = breedData.filter(
+  } else if (selectedQuestion && parsedData) {
+    testBreedData = parsedData.filter(
       (breed) => breed[selectedQuestion.filter] <= value / 20
     );
   }
@@ -53,6 +60,8 @@ export default function pesonalityTestPage() {
 
   console.log(`${selectedQuestion.filter}`);
   console.log("breedData:", testBreedData);
+  console.log("parsedData:", parsedData);
+
   console.log(`${selectedQuestion.trackText}`);
 
   return (
