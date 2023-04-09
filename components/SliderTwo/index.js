@@ -3,7 +3,6 @@ import "rc-slider/assets/index.css";
 import styled from "styled-components";
 
 export default function AnswerSliderTwo({ value, handleValue, showHandle }) {
-  console.log(value);
   return (
     <StyledSliderWrapper>
       <StyledSlider

@@ -1,17 +1,20 @@
+import { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
 import styled from "styled-components";
-import LoadingSpinner from "../../components/LoadingSpinner";
+
 import { personalityQuestionsData } from "../../utils/data/personalityQuestions";
+import { BreedData } from "../_app";
+
+import LoadingSpinner from "../../components/LoadingSpinner";
 import AnswerSlider from "../../components/Slider";
 import AnswerSliderTwo from "../../components/SliderTwo";
-import Link from "next/link";
-import { useState } from "react";
-import { useEffect } from "react";
 
-export default function DetailsPage() {
+export default function pesonalityTestPage() {
+  const breedData = useContext(BreedData);
   const router = useRouter();
   const { id } = router.query;
-  const [value, setValue] = useState([50, 70]);
+  const [value, setValue] = useState([]);
   const [showHandle, setShowHandle] = useState(false);
 
   const handleValue = (value) => {
@@ -22,17 +25,35 @@ export default function DetailsPage() {
   const selectedQuestion = personalityQuestionsData.find(
     (question) => question.id === parseInt(id)
   );
+
   useEffect(() => {
     if (selectedQuestion) {
       setValue(selectedQuestion.startValue);
     }
   }, [selectedQuestion]);
 
-  if (!selectedQuestion || !value) {
+  if (!selectedQuestion || !value || !breedData) {
     return <LoadingSpinner />;
   }
 
+  let testBreedData = breedData;
+
+  if (selectedQuestion && breedData && value.length > 1) {
+    testBreedData = breedData.filter(
+      (breed) =>
+        breed.min_height_male * 2.54 >= value[0] &&
+        breed.max_height_male * 2.54 <= value[1]
+    );
+  } else if (selectedQuestion && breedData) {
+    testBreedData = breedData.filter(
+      (breed) => breed[selectedQuestion.filter] <= value / 20
+    );
+  }
   const nextQuestionId = selectedQuestion.id + 1;
+
+  console.log(`${selectedQuestion.filter}`);
+  console.log("breedData:", testBreedData);
+  console.log(`${selectedQuestion.trackText}`);
 
   return (
     <>
@@ -58,8 +79,12 @@ export default function DetailsPage() {
           <StyledLink
             href={
               nextQuestionId <= 10
-                ? `/personalityTest/${nextQuestionId}`
-                : "/personalityTest/results"
+                ? `/personalityTest/${nextQuestionId}?nextBreedData=${JSON.stringify(
+                    testBreedData
+                  )}`
+                : `/personalityTest/results?nextBreedData=${JSON.stringify(
+                    testBreedData
+                  )}`
             }
             onClick={() => {
               setShowHandle(false);
@@ -70,6 +95,8 @@ export default function DetailsPage() {
         ) : (
           <h4>bitte antworten</h4>
         )}
+
+        <p>breeds selected: {testBreedData.length}</p>
       </StyledQestionCard>
     </>
   );

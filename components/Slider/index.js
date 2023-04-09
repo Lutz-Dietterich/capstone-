@@ -2,11 +2,14 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styled from "styled-components";
 
-export default function AnswerSlider({ value, handleValue, showHandle }) {
-  console.log(showHandle);
-  console.log(value);
-  console.log(handleValue);
-
+export default function AnswerSlider({
+  value,
+  handleValue,
+  showHandle,
+  trackText,
+}) {
+  console.log("trackText:", trackText);
+  let trackText2 = trackText;
   return (
     <StyledSliderWrapper>
       <StyledSlider
@@ -49,7 +52,7 @@ const StyledSlider = styled(Slider)`
     border-radius: 12px;
 
     &:after {
-      content: "Text im Track";
+      content: "please select ->";
       position: absolute;
       left: 0;
       color: #ffffff;
