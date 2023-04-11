@@ -2,15 +2,18 @@ import ListCard from "../../components/ListCard";
 import styled from "styled-components";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Test } from "../_app";
 import Link from "next/link";
+import { Favorite } from "../_app";
 
 export default function ResultPage() {
   const router = useRouter();
   let parsedData = JSON.parse(router.query.nextBreedData ?? "null");
 
   const { testComplete, handleTest } = useContext(Test);
+  const { favorites } = useContext(Favorite);
+  const [match, setMatch] = useState([]);
 
   useEffect(() => {
     if (parsedData) {
@@ -25,7 +28,18 @@ export default function ResultPage() {
   if (!parsedData) {
     return <LoadingSpinner />;
   }
+
+  useEffect(() => {
+    if (favorites) {
+      const modifiedMatch = favorites.filter((dog) => dog.favorite === true);
+      setMatch(modifiedMatch);
+    }
+  }, [favorites]);
+
   console.log(testComplete);
+  console.log("match", match);
+  console.log("parseData", parsedData);
+  console.log("faforites", favorites);
   return (
     <div>
       <StyledHeadline2>Test Result</StyledHeadline2>
@@ -53,7 +67,8 @@ export default function ResultPage() {
 
 const StyledLink = styled(Link)`
   text-decoration: none;
-  color: inherit;
+  display: flex;
+  justify-content: center;
 `;
 
 const StyledHeadline2 = styled.h2`
