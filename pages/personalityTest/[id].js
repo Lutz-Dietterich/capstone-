@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 import { personalityQuestionsData } from "../../utils/data/personalityQuestions";
 import { BreedData } from "../_app";
+import { Test } from "../_app";
 
 import LoadingSpinner from "../../components/LoadingSpinner";
 import AnswerSlider from "../../components/Slider";
@@ -12,6 +13,7 @@ import AnswerSliderTwo from "../../components/SliderTwo";
 
 export default function PesonalityTestPage() {
   const breedData = useContext(BreedData);
+  const { testComplete, handleTest } = useContext(Test);
   const router = useRouter();
   const { id } = router.query;
   const parsedData = JSON.parse(router.query.nextBreedData ?? "null");
@@ -73,6 +75,7 @@ export default function PesonalityTestPage() {
 
   console.log("breedData:", testBreedData);
   console.log("parsedData:", parsedData);
+  console.log(testComplete);
 
   return (
     <>
@@ -120,6 +123,9 @@ export default function PesonalityTestPage() {
             }
             onClick={() => {
               setShowHandle(false);
+              if (nextQuestionId > personalityQuestionsData.length) {
+                handleTest(true);
+              }
             }}
           >
             {nextQuestionId <= personalityQuestionsData.length

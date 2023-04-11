@@ -27,8 +27,8 @@ export default function App({ Component, pageProps }) {
     setActiveButtonId(newId);
   }
 
-  function handleTest() {
-    setTestComplete((currentValue) => !currentValue);
+  function handleTest(toggleTest) {
+    setTestComplete(toggleTest);
   }
 
   useEffect(() => {
@@ -51,7 +51,6 @@ export default function App({ Component, pageProps }) {
     setFavorites(newFavorites);
   }
 
-  console.log(testComplete);
   return (
     <>
       <GlobalStyle />

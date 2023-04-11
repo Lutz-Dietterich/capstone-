@@ -4,9 +4,12 @@ import { AiOutlineHeart } from "react-icons/ai";
 import { RiQuestionnaireLine } from "react-icons/ri";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import { useContext } from "react";
+import { Test } from "../../pages/_app";
 
 export default function MainMenu() {
   const router = useRouter();
+  const { testComplete } = useContext(Test);
   return (
     <StyledNav>
       <StyledList>
@@ -20,7 +23,9 @@ export default function MainMenu() {
         </StyledListItem>
         <StyledListItem>
           <StyledLink
-            href={"/personalityTest/1"}
+            href={
+              testComplete ? "/personalityTest/results" : "/personalityTest/1"
+            }
             className={
               router.pathname.includes("/personalityTest") ? "active" : ""
             }

@@ -3,10 +3,13 @@ import styled from "styled-components";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useRouter } from "next/router";
 import { useContext, useEffect, useState } from "react";
+import { Test } from "../_app";
 
 export default function ResultPage() {
   const router = useRouter();
-  const parsedData = JSON.parse(router.query.nextBreedData ?? "null");
+  let parsedData = JSON.parse(router.query.nextBreedData ?? "null");
+
+  const { testComplete, handleTest } = useContext(Test);
 
   useEffect(() => {
     if (parsedData) {
@@ -14,10 +17,14 @@ export default function ResultPage() {
     }
   }, []);
 
+  if (testComplete) {
+    parsedData = JSON.parse(localStorage.getItem("parsedData"));
+  }
+
   if (!parsedData) {
     return <LoadingSpinner />;
   }
-
+  console.log(testComplete);
   return (
     <div>
       <StyledHeadline2>Test Result</StyledHeadline2>
