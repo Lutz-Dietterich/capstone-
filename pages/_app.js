@@ -9,12 +9,14 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export const BreedData = createContext();
 export const Favorite = createContext();
 export const Filter = createContext();
+export const Test = createContext();
 
 export default function App({ Component, pageProps }) {
   const { data: breedData, error } = useSWR("/api/db", fetcher);
   const [favorites, setFavorites] = useState([]);
   const [activeButtonId, setActiveButtonId] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [testComplete, setTestComplete] = useState(false);
 
   function handleSearchTerm(newTerm) {
     setSearchTerm(newTerm);
@@ -23,6 +25,10 @@ export default function App({ Component, pageProps }) {
 
   function handleActiveButtonId(newId) {
     setActiveButtonId(newId);
+  }
+
+  function handleTest() {
+    setTestComplete((currentValue) => !currentValue);
   }
 
   useEffect(() => {
@@ -45,6 +51,7 @@ export default function App({ Component, pageProps }) {
     setFavorites(newFavorites);
   }
 
+  console.log(testComplete);
   return (
     <>
       <GlobalStyle />
@@ -52,22 +59,24 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
         <title>PawfectMatch</title>
       </Head>
-      <Filter.Provider
-        value={{
-          activeButtonId,
-          handleActiveButtonId,
-          searchTerm,
-          handleSearchTerm,
-        }}
-      >
-        <Favorite.Provider value={{ favorites, handleFavorite }}>
-          <BreedData.Provider value={breedData}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </BreedData.Provider>
-        </Favorite.Provider>
-      </Filter.Provider>
+      <Test.Provider value={{ testComplete, handleTest }}>
+        <Filter.Provider
+          value={{
+            activeButtonId,
+            handleActiveButtonId,
+            searchTerm,
+            handleSearchTerm,
+          }}
+        >
+          <Favorite.Provider value={{ favorites, handleFavorite }}>
+            <BreedData.Provider value={breedData}>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </BreedData.Provider>
+          </Favorite.Provider>
+        </Filter.Provider>
+      </Test.Provider>
     </>
   );
 }

@@ -7,8 +7,8 @@ export default function AnswerSliderTwo({ value, handleValue, showHandle }) {
   return (
     <StyledSliderWrapper>
       <StyledSlider
-        min={1}
-        max={100}
+        min={20}
+        max={70}
         defaultValue={value}
         value={value}
         onChange={(value) => {
@@ -33,7 +33,7 @@ export default function AnswerSliderTwo({ value, handleValue, showHandle }) {
 const StyledSliderWrapper = styled.div`
   position: relative;
   width: 80%;
-  margin: 50px auto 0 auto;
+  margin: 50px auto 10px auto;
 `;
 
 const StyledSlider = styled(Slider)`

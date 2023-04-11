@@ -1,12 +1,18 @@
 import ListCard from "../../components/ListCard";
 import styled from "styled-components";
-import { AiOutlineHeart } from "react-icons/ai";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useRouter } from "next/router";
+import { useContext, useEffect, useState } from "react";
 
 export default function ResultPage() {
   const router = useRouter();
   const parsedData = JSON.parse(router.query.nextBreedData ?? "null");
+
+  useEffect(() => {
+    if (parsedData) {
+      localStorage.setItem("parsedData", JSON.stringify(parsedData));
+    }
+  }, []);
 
   if (!parsedData) {
     return <LoadingSpinner />;
@@ -27,7 +33,7 @@ export default function ResultPage() {
             </div>
           ))
         ) : (
-          <p>No favorites yet.</p>
+          <p>No results yet.</p>
         )}
       </StyledCardList>
     </div>
@@ -44,11 +50,6 @@ const StyledHeadline2 = styled.h2`
   font-weight: 400;
   margin: 10px 0 30px 0;
   line-height: 1.2;
-`;
-
-const StyledHeadlineHeart = styled(AiOutlineHeart)`
-  margin-right: 10px;
-  color: red;
 `;
 
 const StyledCardList = styled.section`
