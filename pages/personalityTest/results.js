@@ -2,8 +2,9 @@ import ListCard from "../../components/ListCard";
 import styled from "styled-components";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Test } from "../_app";
+import Link from "next/link";
 
 export default function ResultPage() {
   const router = useRouter();
@@ -17,7 +18,7 @@ export default function ResultPage() {
     }
   }, []);
 
-  if (testComplete) {
+  if (testComplete && !parsedData) {
     parsedData = JSON.parse(localStorage.getItem("parsedData"));
   }
 
@@ -28,6 +29,9 @@ export default function ResultPage() {
   return (
     <div>
       <StyledHeadline2>Test Result</StyledHeadline2>
+      <StyledLink href={"/personalityTest/1"}>
+        <button onClick={() => handleTest(false)}>Retake Test</button>
+      </StyledLink>
       <StyledCardList>
         {parsedData ? (
           parsedData.map((dog) => (
@@ -46,6 +50,11 @@ export default function ResultPage() {
     </div>
   );
 }
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+`;
 
 const StyledHeadline2 = styled.h2`
   display: flex;

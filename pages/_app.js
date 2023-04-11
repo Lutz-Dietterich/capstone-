@@ -29,6 +29,9 @@ export default function App({ Component, pageProps }) {
 
   function handleTest(toggleTest) {
     setTestComplete(toggleTest);
+    if (!toggleTest) {
+      localStorage.removeItem("parsedData");
+    }
   }
 
   useEffect(() => {
