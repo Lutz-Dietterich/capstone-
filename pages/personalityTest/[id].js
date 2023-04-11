@@ -10,7 +10,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import AnswerSlider from "../../components/Slider";
 import AnswerSliderTwo from "../../components/SliderTwo";
 
-export default function pesonalityTestPage() {
+export default function PesonalityTestPage() {
   const breedData = useContext(BreedData);
   const router = useRouter();
   const { id } = router.query;
@@ -18,7 +18,7 @@ export default function pesonalityTestPage() {
   const [value, setValue] = useState([]);
   const [showHandle, setShowHandle] = useState(false);
 
-  let testBreedData;
+  let testBreedData = breedData;
 
   const handleValue = (value) => {
     setValue(value);
@@ -41,9 +41,11 @@ export default function pesonalityTestPage() {
 
   if (parsedData && parsedData.length > 0) {
     testBreedData = parsedData;
-  } else {
-    testBreedData = breedData;
   }
+
+  // if (value.length <= 1) {
+  //   setValue(value / 20);
+  // }
 
   if (selectedQuestion && breedData && value.length > 1) {
     testBreedData = breedData.filter(
@@ -52,17 +54,13 @@ export default function pesonalityTestPage() {
         breed.max_height_male * 2.54 <= value[1]
     );
   } else if (selectedQuestion && parsedData) {
-    testBreedData = parsedData.filter(
-      (breed) => breed[selectedQuestion.filter] <= value / 20
-    );
+    testBreedData = parsedData.filter(selectedQuestion.filter);
   }
+
   const nextQuestionId = selectedQuestion.id + 1;
 
-  console.log(`${selectedQuestion.filter}`);
   console.log("breedData:", testBreedData);
   console.log("parsedData:", parsedData);
-
-  console.log(`${selectedQuestion.trackText}`);
 
   return (
     <>
@@ -87,7 +85,7 @@ export default function pesonalityTestPage() {
         {showHandle ? (
           <StyledLink
             href={
-              nextQuestionId <= 10
+              nextQuestionId <= personalityQuestionsData.length
                 ? `/personalityTest/${nextQuestionId}?nextBreedData=${JSON.stringify(
                     testBreedData
                   )}`
@@ -99,13 +97,13 @@ export default function pesonalityTestPage() {
               setShowHandle(false);
             }}
           >
-            {nextQuestionId <= 10 ? "Next" : "Show Results"}
+            {nextQuestionId <= personalityQuestionsData.length
+              ? "Next"
+              : "Show Results"}
           </StyledLink>
         ) : (
-          <h4>bitte antworten</h4>
+          <h4>pleace select an answer</h4>
         )}
-
-        <p>breeds selected: {testBreedData.length}</p>
       </StyledQestionCard>
     </>
   );

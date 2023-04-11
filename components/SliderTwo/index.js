@@ -1,6 +1,7 @@
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styled from "styled-components";
+import { FaDog } from "react-icons/fa";
 
 export default function AnswerSliderTwo({ value, handleValue, showHandle }) {
   return (
@@ -21,7 +22,8 @@ export default function AnswerSliderTwo({ value, handleValue, showHandle }) {
           left={((value[0] - 1) / 99) * 100}
           right={((100 - value[1] - 1) / 99) * 100}
         >
-          {value[0]} cm - {value[1]} cm
+          <FaDog size="20" /> {value[0]} cm - {value[1]} cm
+          <FaDog size="30" />
         </StyledHandle>
       )}
     </StyledSliderWrapper>
@@ -31,7 +33,7 @@ export default function AnswerSliderTwo({ value, handleValue, showHandle }) {
 const StyledSliderWrapper = styled.div`
   position: relative;
   width: 80%;
-  margin: 40px auto 20px;
+  margin: 50px auto 0 auto;
 `;
 
 const StyledSlider = styled(Slider)`
@@ -66,24 +68,27 @@ const StyledSlider = styled(Slider)`
 `;
 
 const StyledHandle = styled.div`
-  background: rgb(55, 66, 250);
-  background: radial-gradient(
-    circle,
-    rgba(55, 66, 250, 1) 0%,
-    rgba(55, 66, 250, 1) 41%,
-    rgba(0, 212, 255, 1) 72%
-  );
-  color: #ffffff;
-  position: absolute;
-  top: -40px;
-  left: ${({ left }) => `calc(${left}% - 18px)`};
-  right: ${({ right }) => `calc(${right}% - 18px)`};
+  // background: rgb(55, 66, 250);
+  // background: radial-gradient(
+  //   circle,
+  //   rgba(55, 66, 250, 1) 0%,
+  //   rgba(55, 66, 250, 1) 41%,
+  //   rgba(0, 212, 255, 1) 72%
+  // );
+  color: darkgrey;
+  position: relative;
+  top: -56px;
+  // left: ${({ left }) => `calc(${left}% - 18px)`};
+  // right: ${({ right }) => `calc(${right}% - 18px)`};
+  // left: auto;
+  // right: auto;
+  align-self: center;
   width: auto;
   height: 32px;
   border-radius: 16px;
   line-height: 32px;
   text-align: center;
-  font-size: 10px;
+  font-size: 14px;
   white-space: nowrap;
   z-index: 1;
   padding: 0 16px;
