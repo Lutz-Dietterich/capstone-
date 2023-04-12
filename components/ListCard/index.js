@@ -2,23 +2,54 @@ import styled from "styled-components";
 import Image from "next/image";
 import FavoriteButton from "../FavoriteButton";
 import Link from "next/link";
+import { useContext } from "react";
+import { Favorite } from "../../pages/_app";
 
 export default function ListCard({ name, img, breedID }) {
+  const { favorites } = useContext(Favorite);
+  const parsedData = JSON.parse(localStorage.getItem("parsedData") ?? "null");
+  const matchedIds = parsedData ? parsedData.map((dog) => dog._id) : [];
+  const matchedFavorite =
+    favorites.find((item) => item._id === breedID)?.favorite &&
+    matchedIds.includes(breedID);
+  console.log("card", favorites);
+  console.log("parsedData", parsedData);
+  console.log("breedID", breedID);
+  console.log("matchedIds", matchedIds);
   return (
-    <StyledCard id={breedID}>
-      <StyledCardHeader>
-        <StyledCardHeadline>{name}</StyledCardHeadline>
-        <FavoriteButton breedID={breedID} />
-      </StyledCardHeader>
-      <StyledLink href={`/details/${breedID}`}>
-        <StyledCardImage
-          src={img}
-          alt={`Bild ${name}`}
-          width={512}
-          height={500}
-        />
-      </StyledLink>
-    </StyledCard>
+    <>
+      {matchedFavorite ? (
+        <StyledCard id={breedID}>
+          <StyledCardHeaderMatch>
+            <StyledCardHeadline>{name}</StyledCardHeadline>
+            <FavoriteButton breedID={breedID} />
+          </StyledCardHeaderMatch>
+          <StyledLink href={`/details/${breedID}`}>
+            <StyledCardImage
+              src={img}
+              alt={`Bild ${name}`}
+              width={512}
+              height={500}
+            />
+          </StyledLink>
+        </StyledCard>
+      ) : (
+        <StyledCard id={breedID}>
+          <StyledCardHeader>
+            <StyledCardHeadline>{name}</StyledCardHeadline>
+            <FavoriteButton breedID={breedID} />
+          </StyledCardHeader>
+          <StyledLink href={`/details/${breedID}`}>
+            <StyledCardImage
+              src={img}
+              alt={`Bild ${name}`}
+              width={512}
+              height={500}
+            />
+          </StyledLink>
+        </StyledCard>
+      )}
+    </>
   );
 }
 const StyledLink = styled(Link)`
@@ -62,6 +93,18 @@ const StyledCardHeader = styled.header`
   width: 100%;
   height: 50px;
   background-color: #fff;
+  border-radius: 30px;
+  margin-top: 10px;
+  padding: 0 15px;
+`;
+
+const StyledCardHeaderMatch = styled.header`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 50px;
+  background-color: #000;
   border-radius: 30px;
   margin-top: 10px;
   padding: 0 15px;

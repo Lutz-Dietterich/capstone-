@@ -13,6 +13,7 @@ export default function ResultPage() {
 
   const { testComplete, handleTest } = useContext(Test);
   const { favorites } = useContext(Favorite);
+  const [matchFavorites, setMatchFavorites] = useState([]);
   const [match, setMatch] = useState([]);
 
   useEffect(() => {
@@ -29,17 +30,11 @@ export default function ResultPage() {
     return <LoadingSpinner />;
   }
 
-  useEffect(() => {
-    if (favorites) {
-      const modifiedMatch = favorites.filter((dog) => dog.favorite === true);
-      setMatch(modifiedMatch);
-    }
-  }, [favorites]);
-
   console.log(testComplete);
   console.log("match", match);
   console.log("parseData", parsedData);
   console.log("faforites", favorites);
+  console.log("matchFavorites", matchFavorites);
   return (
     <div>
       <StyledHeadline2>Test Result</StyledHeadline2>
@@ -54,6 +49,7 @@ export default function ResultPage() {
                 name={dog.name}
                 img={dog.image_link}
                 breedID={dog._id}
+                matchedIds={dog._id}
               />
             </div>
           ))
