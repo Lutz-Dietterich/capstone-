@@ -4,10 +4,13 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import { useContext, useEffect, useState } from "react";
 import { Test } from "../_app";
 import Link from "next/link";
+import useScrollPosition from "../../utils/hooks/useScrollPosition";
 
 export default function ResultPage() {
-  const { handleTest, testData, hanleTestData } = useContext(Test);
+  const { handleTest, testData } = useContext(Test);
   const [parsedData, setParsedData] = useState(testData);
+
+  useScrollPosition();
 
   useEffect(() => {
     const data = JSON.parse(localStorage.getItem("parsedData"));

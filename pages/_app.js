@@ -12,7 +12,7 @@ export const Filter = createContext();
 export const Test = createContext();
 
 export default function App({ Component, pageProps }) {
-  const { data: breedData, error } = useSWR("/api/db", fetcher);
+  const { data: breedData } = useSWR("/api/db", fetcher);
   const [favorites, setFavorites] = useState([]);
   const [activeButtonId, setActiveButtonId] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");

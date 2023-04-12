@@ -1,12 +1,15 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { Favorite } from "../../pages/_app";
 import ListCard from "../../components/ListCard";
 import styled from "styled-components";
 import { AiOutlineHeart } from "react-icons/ai";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import useScrollPosition from "../../utils/hooks/useScrollPosition";
 
 export default function FavoritesPage() {
   const { favorites } = useContext(Favorite);
+
+  useScrollPosition();
 
   if (!favorites) {
     return <LoadingSpinner />;
