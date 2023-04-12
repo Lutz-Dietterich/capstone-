@@ -5,26 +5,36 @@ import Link from "next/link";
 import { useContext } from "react";
 import { Favorite } from "../../pages/_app";
 
-export default function ListCard({ name, img, breedID }) {
+export default function ListCard({ name, img, breedID, resultData }) {
   const { favorites } = useContext(Favorite);
-  const parsedData = JSON.parse(localStorage.getItem("parsedData") ?? "null");
+
+  let parsedData = [];
+
+  if (resultData) {
+    parsedData = resultData;
+  } else {
+    const localStorageData = localStorage.getItem("parsedData");
+    if (localStorageData) {
+      parsedData = JSON.parse(localStorageData);
+    }
+  }
+
   const matchedIds = parsedData ? parsedData.map((dog) => dog._id) : [];
   const matchedFavorite =
     favorites.find((item) => item._id === breedID)?.favorite &&
     matchedIds.includes(breedID);
-  console.log("card", favorites);
-  console.log("parsedData", parsedData);
-  console.log("breedID", breedID);
-  console.log("matchedIds", matchedIds);
+
   return (
     <>
       {matchedFavorite ? (
-        <StyledCard id={breedID}>
+        <StyledMatchedCard id={breedID}>
           <StyledCardHeaderMatch>
-            <StyledCardHeadline>{name}</StyledCardHeadline>
+            <StyledMatchedCardHeadline>{name}</StyledMatchedCardHeadline>
             <FavoriteButton breedID={breedID} />
           </StyledCardHeaderMatch>
           <StyledLink href={`/details/${breedID}`}>
+            <StyledMatchedBanner>matched!</StyledMatchedBanner>
+
             <StyledCardImage
               src={img}
               alt={`Bild ${name}`}
@@ -32,7 +42,7 @@ export default function ListCard({ name, img, breedID }) {
               height={500}
             />
           </StyledLink>
-        </StyledCard>
+        </StyledMatchedCard>
       ) : (
         <StyledCard id={breedID}>
           <StyledCardHeader>
@@ -56,6 +66,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   width: 100%;
   height: 90vw;
+  position: relative;
 
   @media (min-width: 768px) {
     height: 40vw;
@@ -86,6 +97,32 @@ const StyledCard = styled.article`
   }
 `;
 
+const StyledMatchedCard = styled.article`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 90vw;
+  max-width: 500px;
+  max-height: 500px;
+  height: 90vw;
+  background-color: #fff;
+  border-radius: 30px;
+  box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+  border: 2px solid #3742fa;
+
+  &:hover {
+    box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
+    transform: scale(1.02);
+  }
+
+  @media (min-width: 768px) {
+    width: 40vw;
+    height: 40vw;
+    max-width: 400px;
+    max-height: 400px;
+  }
+`;
+
 const StyledCardHeader = styled.header`
   display: flex;
   justify-content: space-between;
@@ -104,7 +141,7 @@ const StyledCardHeaderMatch = styled.header`
   align-items: center;
   width: 100%;
   height: 50px;
-  background-color: #000;
+  background-color: #fff;
   border-radius: 30px;
   margin-top: 10px;
   padding: 0 15px;
@@ -114,6 +151,27 @@ const StyledCardHeadline = styled.h2`
   font-size: 1.2rem;
   font-weight: 600;
   color: darkslategray;
+`;
+
+const StyledMatchedCardHeadline = styled.h2`
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #3742fa;
+`;
+
+const StyledMatchedBanner = styled.p`
+  font-size: 3rem;
+  font-weight: 200;
+  color: #3742fa;
+  border-radius: 30px;
+  margin: auto;
+
+  position: absolute;
+  transform: rotate(-30deg) translate(-50%, -50%);
+  transform-origin: 50% 50%;
+  z-index: 0;
+  top: 30%;
+  left: 50%;
 `;
 
 const StyledCardImage = styled(Image)`

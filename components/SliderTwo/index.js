@@ -7,8 +7,8 @@ export default function AnswerSliderTwo({ value, handleValue, showHandle }) {
   return (
     <StyledSliderWrapper>
       <StyledSlider
-        min={20}
-        max={70}
+        min={5}
+        max={95}
         defaultValue={value}
         value={value}
         onChange={(value) => {

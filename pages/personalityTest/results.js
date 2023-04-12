@@ -2,19 +2,15 @@ import ListCard from "../../components/ListCard";
 import styled from "styled-components";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { useRouter } from "next/router";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Test } from "../_app";
 import Link from "next/link";
-import { Favorite } from "../_app";
 
 export default function ResultPage() {
   const router = useRouter();
   let parsedData = JSON.parse(router.query.nextBreedData ?? "null");
 
   const { testComplete, handleTest } = useContext(Test);
-  const { favorites } = useContext(Favorite);
-  const [matchFavorites, setMatchFavorites] = useState([]);
-  const [match, setMatch] = useState([]);
 
   useEffect(() => {
     if (parsedData) {
@@ -30,11 +26,6 @@ export default function ResultPage() {
     return <LoadingSpinner />;
   }
 
-  console.log(testComplete);
-  console.log("match", match);
-  console.log("parseData", parsedData);
-  console.log("faforites", favorites);
-  console.log("matchFavorites", matchFavorites);
   return (
     <div>
       <StyledHeadline2>Test Result</StyledHeadline2>
@@ -49,7 +40,7 @@ export default function ResultPage() {
                 name={dog.name}
                 img={dog.image_link}
                 breedID={dog._id}
-                matchedIds={dog._id}
+                resultData={parsedData}
               />
             </div>
           ))
