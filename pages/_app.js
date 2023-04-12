@@ -47,9 +47,6 @@ export default function App({ Component, pageProps }) {
     localStorage.setItem("parsedData", JSON.stringify(newData));
   }
 
-  console.log("testData", testData);
-  console.log("testComplete", testComplete);
-
   useEffect(() => {
     const savedFavorites = localStorage.getItem("favorites");
     if (savedFavorites) {
