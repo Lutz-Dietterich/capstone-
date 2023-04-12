@@ -19,6 +19,11 @@ export default function App({ Component, pageProps }) {
   const [testComplete, setTestComplete] = useState(false);
   const [testData, setTestData] = useState([]);
 
+  useEffect(() => {
+    const testCompleteValue = JSON.parse(localStorage.getItem("testComplete"));
+    setTestComplete(testCompleteValue !== null ? testCompleteValue : false);
+  }, []);
+
   function handleSearchTerm(newTerm) {
     setSearchTerm(newTerm);
     setActiveButtonId(1);
@@ -30,8 +35,10 @@ export default function App({ Component, pageProps }) {
 
   function handleTest(toggleTest) {
     setTestComplete(toggleTest);
+    localStorage.setItem("testComplete", toggleTest);
     if (!toggleTest) {
       localStorage.removeItem("parsedData");
+      localStorage.removeItem("testComplete");
     }
   }
 
@@ -41,6 +48,7 @@ export default function App({ Component, pageProps }) {
   }
 
   console.log("testData", testData);
+  console.log("testComplete", testComplete);
 
   useEffect(() => {
     const savedFavorites = localStorage.getItem("favorites");

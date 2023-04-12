@@ -6,7 +6,7 @@ import { Test } from "../_app";
 import Link from "next/link";
 
 export default function ResultPage() {
-  const { testComplete, handleTest, testData } = useContext(Test);
+  const { handleTest, testData, hanleTestData } = useContext(Test);
   const [parsedData, setParsedData] = useState(testData);
 
   useEffect(() => {
@@ -22,7 +22,13 @@ export default function ResultPage() {
     <div>
       <StyledHeadline2>Test Result</StyledHeadline2>
       <StyledLink href={"/personalityTest/1"}>
-        <button onClick={() => handleTest(false)}>Retake Test</button>
+        <button
+          onClick={() => {
+            handleTest(false);
+          }}
+        >
+          Retake Test
+        </button>
       </StyledLink>
       <StyledCardList>
         {parsedData ? (
