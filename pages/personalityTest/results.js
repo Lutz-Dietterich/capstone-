@@ -1,26 +1,18 @@
 import ListCard from "../../components/ListCard";
 import styled from "styled-components";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { useRouter } from "next/router";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Test } from "../_app";
 import Link from "next/link";
 
 export default function ResultPage() {
-  const router = useRouter();
-  let parsedData = JSON.parse(router.query.nextBreedData ?? "null");
-
-  const { testComplete, handleTest } = useContext(Test);
+  const { testComplete, handleTest, testData } = useContext(Test);
+  const [parsedData, setParsedData] = useState(testData);
 
   useEffect(() => {
-    if (parsedData) {
-      localStorage.setItem("parsedData", JSON.stringify(parsedData));
-    }
+    const data = JSON.parse(localStorage.getItem("parsedData"));
+    setParsedData(data);
   }, []);
-
-  if (testComplete && !parsedData) {
-    parsedData = JSON.parse(localStorage.getItem("parsedData"));
-  }
 
   if (!parsedData) {
     return <LoadingSpinner />;

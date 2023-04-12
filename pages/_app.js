@@ -17,6 +17,7 @@ export default function App({ Component, pageProps }) {
   const [activeButtonId, setActiveButtonId] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
   const [testComplete, setTestComplete] = useState(false);
+  const [testData, setTestData] = useState([]);
 
   function handleSearchTerm(newTerm) {
     setSearchTerm(newTerm);
@@ -33,6 +34,13 @@ export default function App({ Component, pageProps }) {
       localStorage.removeItem("parsedData");
     }
   }
+
+  function handleTestData(newData) {
+    setTestData(newData);
+    localStorage.setItem("parsedData", JSON.stringify(newData));
+  }
+
+  console.log("testData", testData);
 
   useEffect(() => {
     const savedFavorites = localStorage.getItem("favorites");
@@ -61,7 +69,9 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
         <title>PawfectMatch</title>
       </Head>
-      <Test.Provider value={{ testComplete, handleTest }}>
+      <Test.Provider
+        value={{ testComplete, handleTest, testData, handleTestData }}
+      >
         <Filter.Provider
           value={{
             activeButtonId,

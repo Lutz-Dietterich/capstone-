@@ -13,14 +13,14 @@ import AnswerSliderTwo from "../../components/SliderTwo";
 
 export default function PesonalityTestPage() {
   const breedData = useContext(BreedData);
-  const { testComplete, handleTest } = useContext(Test);
+  const { handleTest, testData, handleTestData } = useContext(Test);
   const router = useRouter();
   const { id } = router.query;
-  const parsedData = JSON.parse(router.query.nextBreedData ?? "null");
+  const parsedData = testData;
   const [value, setValue] = useState([]);
   const [showHandle, setShowHandle] = useState(false);
 
-  let testBreedData = breedData;
+  let testBreedData = testData;
 
   const handleValue = (value) => {
     setValue(value);
@@ -73,10 +73,6 @@ export default function PesonalityTestPage() {
 
   const nextQuestionId = selectedQuestion.id + 1;
 
-  console.log("breedData:", testBreedData);
-  console.log("parsedData:", parsedData);
-  console.log(testComplete);
-
   return (
     <>
       <StyledHeadline2>personalityTest</StyledHeadline2>
@@ -114,15 +110,13 @@ export default function PesonalityTestPage() {
           <StyledLink
             href={
               nextQuestionId <= personalityQuestionsData.length
-                ? `/personalityTest/${nextQuestionId}?nextBreedData=${JSON.stringify(
-                    testBreedData
-                  )}`
-                : `/personalityTest/results?nextBreedData=${JSON.stringify(
-                    testBreedData
-                  )}`
+                ? `/personalityTest/${nextQuestionId}`
+                : `/personalityTest/results`
             }
             onClick={() => {
               setShowHandle(false);
+              handleTestData(testBreedData);
+
               if (nextQuestionId > personalityQuestionsData.length) {
                 handleTest(true);
               }

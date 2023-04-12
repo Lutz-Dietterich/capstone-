@@ -35,7 +35,7 @@ export default function ListCard({ name, img, breedID, resultData }) {
           <StyledLink href={`/details/${breedID}`}>
             <StyledMatchedBanner>matched!</StyledMatchedBanner>
 
-            <StyledCardImage
+            <StyledMatchedCardImage
               src={img}
               alt={`Bild ${name}`}
               width={512}
@@ -179,4 +179,12 @@ const StyledCardImage = styled(Image)`
   height: 100%;
   border-radius: 30px;
   object-fit: fill;
+`;
+
+const StyledMatchedCardImage = styled(Image)`
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  object-fit: fill;
+  opacity: 1;
 `;

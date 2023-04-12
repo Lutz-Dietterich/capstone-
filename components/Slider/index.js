@@ -2,14 +2,7 @@ import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import styled from "styled-components";
 
-export default function AnswerSlider({
-  value,
-  handleValue,
-  showHandle,
-  trackText,
-}) {
-  console.log("trackText:", trackText);
-  let trackText2 = trackText;
+export default function AnswerSlider({ value, handleValue, showHandle }) {
   return (
     <StyledSliderWrapper>
       <StyledSlider
