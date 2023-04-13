@@ -46,6 +46,8 @@ const LazyCardList = lazy(() =>
   )
 );
 
+// comment
+
 export default function Home() {
   useScrollPosition();
 
