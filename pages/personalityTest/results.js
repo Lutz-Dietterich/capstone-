@@ -1,47 +1,51 @@
-import { useContext } from "react";
-import { Favorite } from "../../pages/_app";
 import ListCard from "../../components/ListCard";
 import styled from "styled-components";
-import { AiOutlineHeart } from "react-icons/ai";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import { useContext } from "react";
+import { Test } from "../_app";
+import Link from "next/link";
 import useScrollPosition from "../../utils/hooks/useScrollPosition";
 import ScrollToTopButton from "../../components/ScrollToTopButton";
 
-export default function FavoritesPage() {
-  const { favorites } = useContext(Favorite);
+export default function ResultPage() {
+  const { handleTest, testData } = useContext(Test);
 
   useScrollPosition();
 
-  if (!favorites) {
+  if (!testData) {
     return <LoadingSpinner />;
   }
 
-  const favoriteItems = favorites.filter((item) => item.favorite);
-
   return (
     <div>
-      <StyledHeadline2>
-        <StyledHeadlineHeart /> MyFavorites
-      </StyledHeadline2>
+      <StyledHeadline2>Test Result</StyledHeadline2>
+
       <StyledCardList>
-        {favoriteItems.length > 0 ? (
-          favoriteItems.map((dog) => (
+        {testData ? (
+          testData.map((dog) => (
             <div key={dog._id}>
               <ListCard
                 name={dog.name}
                 img={dog.image_link}
                 breedID={dog._id}
+                resultData={testData}
               />
             </div>
           ))
         ) : (
-          <p>No favorites yet.</p>
+          <p>No results yet.</p>
         )}
       </StyledCardList>
       <ScrollToTopButton />
     </div>
   );
 }
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  display: flex;
+  justify-content: center;
+`;
 
 const StyledHeadline2 = styled.h2`
   display: flex;
@@ -53,11 +57,6 @@ const StyledHeadline2 = styled.h2`
   font-weight: 400;
   margin: 10px 0 30px 0;
   line-height: 1.2;
-`;
-
-const StyledHeadlineHeart = styled(AiOutlineHeart)`
-  margin-right: 10px;
-  color: red;
 `;
 
 const StyledCardList = styled.section`

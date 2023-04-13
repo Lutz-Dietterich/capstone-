@@ -28,7 +28,7 @@ export default function DetailsPage() {
   return (
     <StyledDetailsPage>
       <StyledDetailsHeader>
-        <StyledBackLink href={"/"} onClick={() => router.back()}>
+        <StyledBackLink href={"#"} onClick={() => router.back()}>
           <TiArrowBackOutline />
           Back
         </StyledBackLink>
@@ -147,7 +147,7 @@ const StyledDetailsPage = styled.article`
 `;
 
 const StyledDetailsHeader = styled.header`
-  background-color: #f5f5f5;
+  background-color: #fff7f7;
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -163,9 +163,9 @@ const StyledDetailsHeader = styled.header`
   }
 `;
 
-const StyledBackLink = styled(Link)`
+const StyledBackLink = styled.a`
   text-decoration: none;
-  background-color: #f5f5f5;
+  background-color: #fff7f7;
   padding-left: 20px;
   font-size: 1rem;
   font-weight: 500;

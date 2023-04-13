@@ -9,12 +9,25 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export const BreedData = createContext();
 export const Favorite = createContext();
 export const Filter = createContext();
+export const Test = createContext();
 
 export default function App({ Component, pageProps }) {
-  const { data: breedData, error } = useSWR("/api/db", fetcher);
+  const { data: breedData } = useSWR("/api/db", fetcher);
   const [favorites, setFavorites] = useState([]);
   const [activeButtonId, setActiveButtonId] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
+  const [testComplete, setTestComplete] = useState(false);
+  const [testData, setTestData] = useState([]);
+
+  useEffect(() => {
+    const testCompleteValue = JSON.parse(localStorage.getItem("testComplete"));
+    setTestComplete(testCompleteValue !== null ? testCompleteValue : false);
+  }, []);
+
+  useEffect(() => {
+    const parsedData = JSON.parse(localStorage.getItem("parsedData"));
+    setTestData(parsedData !== null ? parsedData : []);
+  }, []);
 
   function handleSearchTerm(newTerm) {
     setSearchTerm(newTerm);
@@ -23,6 +36,20 @@ export default function App({ Component, pageProps }) {
 
   function handleActiveButtonId(newId) {
     setActiveButtonId(newId);
+  }
+
+  function handleTest(toggleTest) {
+    setTestComplete(toggleTest);
+    localStorage.setItem("testComplete", toggleTest);
+    if (!toggleTest) {
+      localStorage.removeItem("parsedData");
+      localStorage.removeItem("testComplete");
+    }
+  }
+
+  function handleTestData(newData) {
+    setTestData(newData);
+    localStorage.setItem("parsedData", JSON.stringify(newData));
   }
 
   useEffect(() => {
@@ -52,22 +79,26 @@ export default function App({ Component, pageProps }) {
         <link rel="icon" href="/favicon.ico" />
         <title>PawfectMatch</title>
       </Head>
-      <Filter.Provider
-        value={{
-          activeButtonId,
-          handleActiveButtonId,
-          searchTerm,
-          handleSearchTerm,
-        }}
+      <Test.Provider
+        value={{ testComplete, handleTest, testData, handleTestData }}
       >
-        <Favorite.Provider value={{ favorites, handleFavorite }}>
-          <BreedData.Provider value={breedData}>
-            <Layout>
-              <Component {...pageProps} />
-            </Layout>
-          </BreedData.Provider>
-        </Favorite.Provider>
-      </Filter.Provider>
+        <Filter.Provider
+          value={{
+            activeButtonId,
+            handleActiveButtonId,
+            searchTerm,
+            handleSearchTerm,
+          }}
+        >
+          <Favorite.Provider value={{ favorites, handleFavorite }}>
+            <BreedData.Provider value={breedData}>
+              <Layout>
+                <Component {...pageProps} />
+              </Layout>
+            </BreedData.Provider>
+          </Favorite.Provider>
+        </Filter.Provider>
+      </Test.Provider>
     </>
   );
 }
