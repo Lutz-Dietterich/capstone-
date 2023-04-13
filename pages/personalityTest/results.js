@@ -5,6 +5,7 @@ import { useContext } from "react";
 import { Test } from "../_app";
 import Link from "next/link";
 import useScrollPosition from "../../utils/hooks/useScrollPosition";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 
 export default function ResultPage() {
   const { handleTest, testData } = useContext(Test);
@@ -43,6 +44,7 @@ export default function ResultPage() {
           <p>No results yet.</p>
         )}
       </StyledCardList>
+      <ScrollToTopButton />
     </div>
   );
 }

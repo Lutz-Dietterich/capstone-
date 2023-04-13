@@ -1,10 +1,11 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { Favorite } from "../../pages/_app";
 import ListCard from "../../components/ListCard";
 import styled from "styled-components";
 import { AiOutlineHeart } from "react-icons/ai";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import useScrollPosition from "../../utils/hooks/useScrollPosition";
+import ScrollToTopButton from "../../components/ScrollToTopButton";
 
 export default function FavoritesPage() {
   const { favorites } = useContext(Favorite);
@@ -37,6 +38,7 @@ export default function FavoritesPage() {
           <p>No favorites yet.</p>
         )}
       </StyledCardList>
+      <ScrollToTopButton />
     </div>
   );
 }
