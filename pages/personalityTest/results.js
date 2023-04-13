@@ -1,23 +1,17 @@
 import ListCard from "../../components/ListCard";
 import styled from "styled-components";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { Test } from "../_app";
 import Link from "next/link";
 import useScrollPosition from "../../utils/hooks/useScrollPosition";
 
 export default function ResultPage() {
   const { handleTest, testData } = useContext(Test);
-  const [parsedData, setParsedData] = useState(testData);
 
   useScrollPosition();
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem("parsedData"));
-    setParsedData(data);
-  }, []);
-
-  if (!parsedData) {
+  if (!testData) {
     return <LoadingSpinner />;
   }
 
@@ -34,14 +28,14 @@ export default function ResultPage() {
         </button>
       </StyledLink>
       <StyledCardList>
-        {parsedData ? (
-          parsedData.map((dog) => (
+        {testData ? (
+          testData.map((dog) => (
             <div key={dog._id}>
               <ListCard
                 name={dog.name}
                 img={dog.image_link}
                 breedID={dog._id}
-                resultData={parsedData}
+                resultData={testData}
               />
             </div>
           ))
