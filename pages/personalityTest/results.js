@@ -19,15 +19,7 @@ export default function ResultPage() {
   return (
     <div>
       <StyledHeadline2>Test Result</StyledHeadline2>
-      <StyledLink href={"/personalityTest/1"}>
-        <button
-          onClick={() => {
-            handleTest(false);
-          }}
-        >
-          Retake Test
-        </button>
-      </StyledLink>
+
       <StyledCardList>
         {testData ? (
           testData.map((dog) => (

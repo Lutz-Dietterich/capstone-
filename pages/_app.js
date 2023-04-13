@@ -24,6 +24,11 @@ export default function App({ Component, pageProps }) {
     setTestComplete(testCompleteValue !== null ? testCompleteValue : false);
   }, []);
 
+  useEffect(() => {
+    const parsedData = JSON.parse(localStorage.getItem("parsedData"));
+    setTestData(parsedData !== null ? parsedData : []);
+  }, []);
+
   function handleSearchTerm(newTerm) {
     setSearchTerm(newTerm);
     setActiveButtonId(1);

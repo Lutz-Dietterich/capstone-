@@ -39,7 +39,7 @@ export default function ScrollToTopButton() {
 
 const StyledButton = styled.button`
   position: fixed;
-  bottom: 60px;
+  bottom: 70px;
   right: 20px;
   border: none;
   border-radius: 5px;
