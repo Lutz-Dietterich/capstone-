@@ -37,8 +37,14 @@ import { lazy, Suspense } from "react";
 import useScrollPosition from "../utils/hooks/useScrollPosition";
 import ScrollToTopButton from "../components/ScrollToTopButton";
 import LoadingSpinner from "../components/LoadingSpinner";
-const LazyCardList = lazy(() => import("../components/CardList"));
-const LazyData = lazy(() => import("../data/data"));
+
+const LazyCardList = lazy(() =>
+  import(
+    /* webpackChunkName: "cardlist" */
+    /* webpackPrefetch: true */
+    "../components/CardList"
+  )
+);
 
 export default function Home() {
   useScrollPosition();
@@ -47,7 +53,6 @@ export default function Home() {
     <>
       <Suspense fallback={<LoadingSpinner />}>
         <LazyCardList />
-        <LazyData />
       </Suspense>
       <ScrollToTopButton />
     </>
