@@ -75,7 +75,7 @@ export default function PesonalityTestPage() {
 
   return (
     <>
-      <StyledHeadline2>personalityTest</StyledHeadline2>
+      {/* <StyledHeadline2>personalityTest</StyledHeadline2> */}
 
       <StyledQestionCard>
         <StyledCardHeader>

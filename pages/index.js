@@ -1,14 +1,34 @@
-import CardList from "../components/CardList";
+// import CardList from "../components/CardList";
+// import useScrollPosition from "../utils/hooks/useScrollPosition";
+// import SrcollToTopButton from "../components/ScrollToTopButton";
+
+// export default function Home() {
+//   useScrollPosition();
+
+//   return (
+//     <>
+//       <CardList />
+//       <SrcollToTopButton />
+//     </>
+//   );
+// }
+
+import { lazy, Suspense } from "react";
 import useScrollPosition from "../utils/hooks/useScrollPosition";
-import SrcollToTopButton from "../components/ScrollToTopButton";
+import ScrollToTopButton from "../components/ScrollToTopButton";
+import LoadingSpinner from "../components/LoadingSpinner";
+
+const LazyCardList = lazy(() => import("../components/CardList"));
 
 export default function Home() {
   useScrollPosition();
 
   return (
     <>
-      <CardList />
-      <SrcollToTopButton />
+      <Suspense fallback={<LoadingSpinner />}>
+        <LazyCardList />
+      </Suspense>
+      <ScrollToTopButton />
     </>
   );
 }
