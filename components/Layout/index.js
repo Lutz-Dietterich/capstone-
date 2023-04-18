@@ -21,7 +21,7 @@ export default function Layout({ children }) {
 const StyledHeader = styled.header`
   position: fixed;
   display: flex;
-  background-color: #fff7f7;
+  background-color: #fffefa;
   width: 100%;
   z-index: 1;
   margin: 0;

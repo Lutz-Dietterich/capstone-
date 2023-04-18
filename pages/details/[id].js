@@ -147,7 +147,7 @@ const StyledDetailsPage = styled.article`
 `;
 
 const StyledDetailsHeader = styled.header`
-  background-color: #fff7f7;
+  background-color: #fffefa;
   position: fixed;
   display: flex;
   flex-direction: row;
@@ -165,7 +165,7 @@ const StyledDetailsHeader = styled.header`
 
 const StyledBackLink = styled.a`
   text-decoration: none;
-  background-color: #fff7f7;
+  background-color: #fffefa;
   padding-left: 20px;
   font-size: 1rem;
   font-weight: 500;
