@@ -1,18 +1,3 @@
-// import CardList from "../components/CardList";
-// import useScrollPosition from "../utils/hooks/useScrollPosition";
-// import SrcollToTopButton from "../components/ScrollToTopButton";
-
-// export default function Home() {
-//   useScrollPosition();
-
-//   return (
-//     <>
-//       <CardList />
-//       <SrcollToTopButton />
-//     </>
-//   );
-// }
-
 import { lazy, Suspense } from "react";
 import useScrollPosition from "../utils/hooks/useScrollPosition";
 import ScrollToTopButton from "../components/ScrollToTopButton";
