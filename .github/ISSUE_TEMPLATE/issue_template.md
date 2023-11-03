@@ -1,9 +1,10 @@
 ---
 name: Userstory template
-about: |
-  A template to create user stories.
-  Remove all ... and examples before posting.
+about: A template to create user stories.Remove all ... and examples before posting.
+title: ''
 labels: enhancement
+assignees: ''
+
 ---
 
 ## Value Proposition
@@ -34,4 +35,12 @@ labels: enhancement
 
 ## Complexity
 
-... (T-Shirt Sizes XS to XL)
+The complexity of each task within the project is categorized using T-shirt sizes from XS to XL. This provides a simple and quick way to estimate the effort and resources required for a task.
+
+### T-Shirt Size Definitions
+
+- [ ] **XS (Extra Small):** Trivial tasks that require minimal effort and time, typically less than a day's work.
+- [ ] **S (Small):** Simple tasks that may take a day or two to complete.
+- [ ] **M (Medium):** Tasks of moderate complexity that might take up to a week to finish.
+- [ ] **L (Large):** Complex tasks that could take multiple weeks to accomplish.
+- [ ] **XL (Extra Large):** Highly complex tasks that require a considerable amount of time, often spanning over a month.
