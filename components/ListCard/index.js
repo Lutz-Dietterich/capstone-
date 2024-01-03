@@ -177,6 +177,7 @@ const StyledMatchedBanner = styled.p`
 `;
 
 const StyledCardImage = styled(Image)`
+  position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 30px;
@@ -184,6 +185,7 @@ const StyledCardImage = styled(Image)`
 `;
 
 const StyledMatchedCardImage = styled(Image)`
+  position: absolute;
   width: 100%;
   height: 100%;
   border-radius: 30px;
