@@ -1,19 +1,36 @@
 import styled from "styled-components";
 import MainMenu from "../MainMenu";
 import Image from "next/image";
+import Impressum from "../Impressum";
+import { useState } from "react";
+import { ImInfo } from "react-icons/im";
 
 export default function Layout({ children }) {
+  const [showImpressum, setShowImpressum] = useState(false);
+
+  const handleImpressumClick = () => {
+    setShowImpressum(!showImpressum);
+  };
+
   return (
     <>
       <StyledHeader>
         <StyledLogo>
           <Image src="/pmlogo.png" alt="PawfectMatch" width={200} height={50} />
         </StyledLogo>
+        <StyledImpressumButton onClick={handleImpressumClick}>
+          <ImInfo />
+        </StyledImpressumButton>
+        {showImpressum && (
+          <Impressum handleImpressumClick={handleImpressumClick} />
+        )}
       </StyledHeader>
-      <StyledMain>{children}</StyledMain>
-      <StyledFooter>
-        <MainMenu />
-      </StyledFooter>
+      {!showImpressum && <StyledMain>{children}</StyledMain>}
+      {!showImpressum && (
+        <StyledFooter>
+          <MainMenu />
+        </StyledFooter>
+      )}
     </>
   );
 }
@@ -52,4 +69,15 @@ const StyledFooter = styled.footer`
   left: 0;
   width: 100%;
   z-index: 15;
+`;
+
+const StyledImpressumButton = styled.button`
+  cursor: pointer;
+  background-color: var(--color-text);
+  border: none;
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  text-align: center;
+  padding: 10px;
+  margin-left: auto;
 `;

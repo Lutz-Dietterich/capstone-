@@ -8,18 +8,6 @@ export default function SearchField({ value, handleSearchChange }) {
 
   const handleSearchClick = () => setShowSearch(!showSearch);
 
-  // window.onload = () => setShowSearch(!showSearch);
-
-  // useEffect(() => {
-  // const handleResize = () => {
-  //   setShowSearch(window.innerWidth >= 900);
-  // };
-  // window.addEventListener("resize", handleResize);
-  // window.onload(handleResize());
-  // return () => window.removeEventListener("resize", handleResize);
-  // };
-  // []);
-
   useEffect(() => {
     if (window.innerWidth >= 900) {
       setShowSearch(true);
@@ -62,7 +50,7 @@ const StyledSearchWrapper = styled.div`
   position: fixed;
   top: 29px;
   width: 700px;
-  z-index: 100;
+  z-index: 15;
 
   @media (min-width: 900px) {
     margin-right: 90px;
@@ -76,12 +64,12 @@ const StyledSearchWrapper = styled.div`
 const StyledSearchFieldWrapper = styled.div`
   display: ${(props) => (props.showSearch ? "block" : "none")};
   justify-content: center;
-  position: relative;
   width: 69vw;
 
   animation: ${(props) => (props.showSearch ? slideInAnimation : "")} 0.5s
     ease-in;
   animation-fill-mode: ${(props) => (props.showSearch ? "forwards" : "")};
+  z-index: 15;
 `;
 
 const StyledSearchField = styled.input`
@@ -117,22 +105,5 @@ const StyledSearchButton = styled.button`
 
   &:hover {
     transform: scale(1.2);
-  }
-`;
-
-const StyledClearButton = styled.button`
-  position: absolute;
-  right: 40px;
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-  z-index: 2;
-
-  &.show {
-    display: block;
-    animation: ${slideInAnimation} 0.5s ease-in;
-    animation-fill-mode: forwards;
-    top: 5px;
   }
 `;
