@@ -8,18 +8,17 @@ export default function SearchField({ value, handleSearchChange }) {
 
   const handleSearchClick = () => setShowSearch(!showSearch);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setShowSearch(window.innerWidth >= 900);
-    };
-    window.addEventListener("resize", handleResize);
-    handleResize();
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setShowSearch(window.innerWidth >= 900);
+  //   };
+  //   window.addEventListener("resize", handleResize);
+  //   handleResize();
+  //   return () => window.removeEventListener("resize", handleResize);
+  // }, []);
 
   return (
     <StyledSearchWrapper>
-      {/* {showSearch && ( */}
       <StyledSearchFieldWrapper showSearch={showSearch}>
         <StyledSearchField
           type="search"
@@ -28,15 +27,6 @@ export default function SearchField({ value, handleSearchChange }) {
           onChange={(e) => handleSearchChange(e.target.value)}
         />
       </StyledSearchFieldWrapper>
-      {/* )} */}
-      {/* {showSearch && value && (
-        <StyledClearButton
-          showSearch={showSearch}
-          onClick={() => handleSearchChange("")}
-        >
-          <AiOutlineClose />
-        </StyledClearButton>
-      )} */}
       <StyledSearchButton onClick={handleSearchClick}>
         <AiOutlineSearch size={25} />
       </StyledSearchButton>
