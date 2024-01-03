@@ -84,6 +84,7 @@ const StyledCard = styled.article`
   background-color: #fff;
   border-radius: 30px;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
   &:hover {
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
     border: 1px solid #3742fa;
@@ -109,6 +110,7 @@ const StyledMatchedCard = styled.article`
   border-radius: 30px;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.3);
   border: 2px solid #3742fa;
+  overflow: hidden;
 
   &:hover {
     box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.5);
