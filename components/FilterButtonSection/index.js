@@ -41,7 +41,7 @@ const StyledWrapper = styled.div`
   gap: 20px;
   padding: 0 10px 8px;
   background-color: #fffefa;
-  z-index: 1;
+  z-index: 15;
 `;
 
 const StyledFilterButtonSection = styled.section`

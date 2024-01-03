@@ -23,7 +23,7 @@ const StyledHeader = styled.header`
   display: flex;
   background-color: #fffefa;
   width: 100%;
-  z-index: 1;
+  z-index: 15;
   margin: 0;
 `;
 
@@ -51,4 +51,5 @@ const StyledFooter = styled.footer`
   bottom: 0;
   left: 0;
   width: 100%;
+  z-index: 15;
 `;

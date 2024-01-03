@@ -171,7 +171,7 @@ const StyledMatchedBanner = styled.p`
   position: absolute;
   transform: rotate(-30deg) translate(-50%, -50%);
   transform-origin: 50% 50%;
-  z-index: 0;
+  z-index: 10;
   top: 30%;
   left: 50%;
 `;
