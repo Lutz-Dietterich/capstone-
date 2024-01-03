@@ -8,14 +8,23 @@ export default function SearchField({ value, handleSearchChange }) {
 
   const handleSearchClick = () => setShowSearch(!showSearch);
 
+  // window.onload = () => setShowSearch(!showSearch);
+
   // useEffect(() => {
-  //   const handleResize = () => {
-  //     setShowSearch(window.innerWidth >= 900);
-  //   };
-  //   window.addEventListener("resize", handleResize);
-  //   handleResize();
-  //   return () => window.removeEventListener("resize", handleResize);
-  // }, []);
+  // const handleResize = () => {
+  //   setShowSearch(window.innerWidth >= 900);
+  // };
+  // window.addEventListener("resize", handleResize);
+  // window.onload(handleResize());
+  // return () => window.removeEventListener("resize", handleResize);
+  // };
+  // []);
+
+  useEffect(() => {
+    if (window.innerWidth >= 900) {
+      setShowSearch(true);
+    }
+  }, []);
 
   return (
     <StyledSearchWrapper>
