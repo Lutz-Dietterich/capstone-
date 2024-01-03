@@ -56,6 +56,14 @@ const StyledButton = styled.button`
     transform: scale(1.1);
   }
 
+  @media (min-width: 1400px) {
+    width: 3%;
+  }
+
+  @media (max-width: 800px) {
+    width: 8%;
+  }
+
   @media (max-width: 600px) {
     background-color: transparent;
     width: 20%;
