@@ -22,21 +22,21 @@ export default function SearchField({ value, handleSearchChange }) {
       {showSearch && (
         <StyledSearchFieldWrapper showSearch={showSearch}>
           <StyledSearchField
-            type="text"
+            type="search"
             placeholder="Search breeds..."
             value={value}
             onChange={(e) => handleSearchChange(e.target.value)}
           />
         </StyledSearchFieldWrapper>
       )}
-      {showSearch && value && (
+      {/* {showSearch && value && (
         <StyledClearButton
           showSearch={showSearch}
           onClick={() => handleSearchChange("")}
         >
           <AiOutlineClose />
         </StyledClearButton>
-      )}
+      )} */}
       <StyledSearchButton onClick={handleSearchClick}>
         <AiOutlineSearch size={25} />
       </StyledSearchButton>
