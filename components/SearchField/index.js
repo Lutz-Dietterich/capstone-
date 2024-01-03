@@ -19,16 +19,16 @@ export default function SearchField({ value, handleSearchChange }) {
 
   return (
     <StyledSearchWrapper>
-      {showSearch && (
-        <StyledSearchFieldWrapper showSearch={showSearch}>
-          <StyledSearchField
-            type="search"
-            placeholder="Search breeds..."
-            value={value}
-            onChange={(e) => handleSearchChange(e.target.value)}
-          />
-        </StyledSearchFieldWrapper>
-      )}
+      {/* {showSearch && ( */}
+      <StyledSearchFieldWrapper showSearch={showSearch}>
+        <StyledSearchField
+          type="search"
+          placeholder="Search breeds..."
+          value={value}
+          onChange={(e) => handleSearchChange(e.target.value)}
+        />
+      </StyledSearchFieldWrapper>
+      {/* )} */}
       {/* {showSearch && value && (
         <StyledClearButton
           showSearch={showSearch}
