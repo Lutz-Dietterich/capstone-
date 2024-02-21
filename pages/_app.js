@@ -32,8 +32,6 @@ export default function App({ Component, pageProps }) {
     }, 1);
   }, []);
 
-  console.log(cookieConsent);
-
   useEffect(() => {
     const testCompleteValue = JSON.parse(localStorage.getItem("testComplete"));
     setTestComplete(testCompleteValue !== null ? testCompleteValue : false);
@@ -107,15 +105,11 @@ export default function App({ Component, pageProps }) {
         >
           <Favorite.Provider value={{ favorites, handleFavorite }}>
             <BreedData.Provider value={breedData}>
-              {!cookieConsent && consentDelay ? (
-                <CookieConsent />
-              ) : (
-                <>
-                  <Layout>
-                    <Component {...pageProps} />
-                  </Layout>
-                </>
-              )}
+              <Layout>
+                {!cookieConsent && consentDelay ? <CookieConsent /> : null}
+
+                <Component {...pageProps} />
+              </Layout>
             </BreedData.Provider>
           </Favorite.Provider>
         </Filter.Provider>
