@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }) {
     if (consent) {
       setCookieConsent(consent);
     }
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       setConstentDelay(true);
     }, 1);
   }, []);
@@ -107,7 +107,6 @@ export default function App({ Component, pageProps }) {
             <BreedData.Provider value={breedData}>
               <Layout>
                 {!cookieConsent && consentDelay ? <CookieConsent /> : null}
-
                 <Component {...pageProps} />
               </Layout>
             </BreedData.Provider>
