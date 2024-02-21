@@ -3,6 +3,7 @@ import GlobalStyle from "../styles";
 import Head from "next/head";
 import Layout from "../components/Layout";
 import useSWR from "swr";
+import CookieConsent from "../components/CookieConsent";
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
@@ -18,6 +19,18 @@ export default function App({ Component, pageProps }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [testComplete, setTestComplete] = useState(false);
   const [testData, setTestData] = useState([]);
+  const [cookieConsent, setCookieConsent] = useState(false);
+  const [consentDelay, setConstentDelay] = useState(false);
+
+  useEffect(() => {
+    const consent = JSON.parse(localStorage.getItem("cookieConsent"));
+    if (consent) {
+      setCookieConsent(consent);
+    }
+    setTimeout(() => {
+      setConstentDelay(true);
+    }, 1);
+  }, []);
 
   useEffect(() => {
     const testCompleteValue = JSON.parse(localStorage.getItem("testComplete"));
@@ -93,6 +106,7 @@ export default function App({ Component, pageProps }) {
           <Favorite.Provider value={{ favorites, handleFavorite }}>
             <BreedData.Provider value={breedData}>
               <Layout>
+                {!cookieConsent && consentDelay ? <CookieConsent /> : null}
                 <Component {...pageProps} />
               </Layout>
             </BreedData.Provider>
